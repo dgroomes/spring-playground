@@ -1,0 +1,11 @@
+spring:
+  cache:
+    type: simple
+logging:
+  level:
+    org.springframework.cache: trace
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info,health,metrics,caches
