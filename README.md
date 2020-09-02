@@ -1,12 +1,10 @@
 # spring-playground
 
-NOT YET FULLY IMPLEMENTED
-
 Learning and experimenting with Spring <https://github.com/spring-projects/spring-framework>.
 
 ---
 
-The project illustrates different concepts, patterns and examples via sub-projects:
+The project illustrates different concepts, patterns and examples via sub-projects (there is only one right now...):
 
 ### `caching/`
 

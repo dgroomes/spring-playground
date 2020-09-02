@@ -1,7 +1,5 @@
 # caching
 
-NOT YET FULLY IMPLEMENTED
-
 A basic Spring application that showcases caching.
 
 ---
@@ -13,13 +11,13 @@ This project aims to de-mystify and illuminate it. Let's learn something!
 ### Instructions
 
 * Use Java 14
-* Source the `commands.sh` file. See see [`commands.sh`](#commandssh)
+* Source the `commands.sh` file. See [`commands.sh`](#commandssh)
 * Build and run the program with `build && run`
 
 ### `commands.sh`
 
-Source the `commands.sh` file using `source commands.sh` which will load your shell with useful 
-commands. Commands include:
+Source the `commands.sh` file using `source commands.sh` which will load your shell with useful commands. Commands
+include:
 
   * `build` build (without tests)
   * `run` run the app
