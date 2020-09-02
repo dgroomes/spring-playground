@@ -4,6 +4,7 @@ spring:
 logging:
   level:
     org.springframework.cache: trace
+    dgroomes.springplayground.caching: trace
 management:
   endpoints:
     web:

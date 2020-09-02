@@ -39,3 +39,11 @@ There is a note that I think hints at what my problem:
 
 I think I need to "cause a cache to be configured on startup". How do I do that? The two aforementioned documentation
 sections do not mention how to configure a cache on startup.
+
+The application prints the stack trace from inside a `@Cacheable`-annotated method to illustrate the layers of Spring
+and Spring Boot machinery between your application code and the `java` command used to run your application. In
+particular, there are layers of generated classes, layers of method calls from classes in the `org.springframework.aop`
+package (AOP stands for Aspect-Oriented Programming), and layers of method calls from classes in the `org.springframework.cache.interceptor`
+package. It looks like this:
+
+![stack trace](screenshots/stack-trace.png)
