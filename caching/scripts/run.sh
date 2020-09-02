@@ -1,10 +1,11 @@
+#!/usr/bin/env bash
 # Run the app
 
-JAR=$(ls "$CACHING_ROOT_DIR"/build/libs/*.jar)
+START_SCRIPT="$CACHING_ROOT_DIR/build/install/caching/bin/caching"
 
-if [[ ! -e "$JAR" ]]; then
-  echo "$JAR does not exist. Build the project first before running." >&2
+if [[ ! -f "$START_SCRIPT" ]]; then
+  echo "The start script does not exist. Exiting. (hint: build the project with the 'build' command)" >&2
   exit 1;
 fi
 
-java -jar "$JAR"
+bash "$START_SCRIPT"
