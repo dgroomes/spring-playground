@@ -24,10 +24,18 @@ include:
 
 ### Commentary
 
-Do you even know if caching is turned on in your app? How do you prove it? I hope Spring Boot makes this easy.
-PROBLEM. I can only get the `cache.size` metric to show data in "/actuator/metrics". I see values of 0 for the other 
-caching metrics: `cache.puts`, `cache.gets` and `cache.evictions`. Why? I think I found the two sections in the
-Spring Boot documentation that should tell me how to get up and running with basic caching plus basic metrics. They are:
+Here is a gentle reminder: Spring Framework provides abstractions over other technologies. For example, read this quote
+from <https://docs.spring.io/spring/docs/5.2.8.RELEASE/spring-framework-reference/integration.html#cache-strategies>:
+
+>As with other services in the Spring Framework, the caching service is an abstraction (not a cache implementation) and requires the use of actual storage to store the cache data — that is, the abstraction frees you from having to write the caching logic but does not provide the actual data store.  
+
+This `caching/` sub-project of the `spring-playground/` project demonstrates Spring's caching abstraction in action.
+Specifically it shows how to use the abstraction in the application code with the convenient `@Cacheable` annotation and
+how the abstraction layer does not extend to the *configuration* of the underlying caching technology (in this case
+<https://github.com/ben-manes/caffeine>). This might be considered a *leaky abstraction*.
+
+For reference, here are the two sections in the Spring Boot documentation that describe how to set up basic caching plus
+basic metrics. They are:
 
 * <https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-caching>
 * <https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html#production-ready-metrics-cache>

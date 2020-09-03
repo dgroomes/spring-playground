@@ -25,16 +25,17 @@ public class Main implements CommandLineRunner {
         this.fortuneService = fortuneService;
     }
 
-    private static List<String> names = List.of("Damon", "Eliza", "Casey", "Elisha", "Adam");
+    private static List<String> names = List.of("Damon", "Eliza");
 
     @Override
-    public void run(String... args) {
+    public void run(String... args) throws InterruptedException {
         log.info("Hello!");
         var size = names.size();
         for (int i = 0; i < 10; i++) {
             var i2 = i % size;
             var fortune = fortuneService.getFortune(names.get(i2));
             log.info(fortune);
+            Thread.sleep(1000);
         }
     }
 }

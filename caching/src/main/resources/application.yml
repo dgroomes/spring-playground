@@ -3,6 +3,12 @@ spring:
     type: caffeine
     cache-names:
       - fortune
+    caffeine:
+      # Define the Caffeine "specification". Read about the range of options at https://www.javadoc.io/doc/com.github.ben-manes.caffeine/caffeine/latest/com/github/benmanes/caffeine/cache/CaffeineSpec.html
+      # Specifically, we want to record the statistics using the 'recordStats' option so that we can capture metrics
+      # like cache gets (hits and misses) and cache evictions. However, "cache puts" always reports 0. Not sure why.
+      # Read about Caffeine's statistics feature at https://github.com/ben-manes/caffeine/wiki/Statistics
+      spec: recordStats,expireAfterWrite=3s
 logging:
   level:
     org.springframework.cache: trace
