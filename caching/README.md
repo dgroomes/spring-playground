@@ -25,18 +25,16 @@ include:
 ### Commentary
 
 Do you even know if caching is turned on in your app? How do you prove it? I hope Spring Boot makes this easy.
-PROBLEM. I can't get the cache metrics to show up in "/actuator/metrics". Why? I think I found the two sections in the
+PROBLEM. I can only get the `cache.size` metric to show data in "/actuator/metrics". I see values of 0 for the other 
+caching metrics: `cache.puts`, `cache.gets` and `cache.evictions`. Why? I think I found the two sections in the
 Spring Boot documentation that should tell me how to get up and running with basic caching plus basic metrics. They are:
 
 * <https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-caching>
 * <https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html#production-ready-metrics-cache>
 * Bonus. Spring *Framework* documentation about caching: <https://docs.spring.io/spring/docs/5.2.8.RELEASE/spring-framework-reference/integration.html#cache>
-There is a note that I think hints at what my problem:
 
-> Only caches that are configured on startup are bound to the registry.
-
-I think I need to "cause a cache to be configured on startup". How do I do that? The two aforementioned documentation
-sections do not mention how to configure a cache on startup.
+I think I need to enable statistics in the Caffeine cache. I found that via Googling, in the Caffeine official docs on
+the GitHub repo: <https://github.com/ben-manes/caffeine/wiki/Statistics>. 
 
 The application prints the stack trace from inside a `@Cacheable`-annotated method to illustrate the layers of Spring
 and Spring Boot machinery between your application code and the `java` command used to run your application. In

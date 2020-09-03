@@ -7,6 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 
+import java.util.List;
+
 @EnableCaching
 @SpringBootApplication
 public class Main implements CommandLineRunner {
@@ -23,11 +25,15 @@ public class Main implements CommandLineRunner {
         this.fortuneService = fortuneService;
     }
 
+    private static List<String> names = List.of("Damon", "Eliza", "Casey", "Elisha", "Adam");
+
     @Override
     public void run(String... args) {
         log.info("Hello!");
-        for (int i = 0; i < 3; i++) {
-            var fortune = fortuneService.getFortune();
+        var size = names.size();
+        for (int i = 0; i < 10; i++) {
+            var i2 = i % size;
+            var fortune = fortuneService.getFortune(names.get(i2));
             log.info(fortune);
         }
     }

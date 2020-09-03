@@ -24,9 +24,9 @@ public class FortuneService {
      * Spring.
      */
     @Cacheable(value = "fortune")
-    public String getFortune() {
+    public String getFortune(String name) {
         log.trace("getFortune stacktrace:\n{}", Util.formatStackTrace(Thread.currentThread().getStackTrace()));
         var luckyNumber = random.nextInt(11);
-        return String.format("Your lucky number is %s", luckyNumber);
+        return String.format("%s, your lucky number is %s", name, luckyNumber);
     }
 }
