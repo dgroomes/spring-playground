@@ -51,3 +51,14 @@ package (AOP stands for Aspect-Oriented Programming), and layers of method calls
 package. It looks like this:
 
 ![stack trace](screenshots/stack-trace.png)
+
+This demo application enables caching metrics (after two days of head scratching I got it figured out). The metrics can
+be conveniently browsed in the Spring Boot Actuator '/metrics' endpoint. Run the app and explore the cache metrics with,
+for example:
+
+* `curl --request GET --url http://localhost:8080/actuator/metrics/cache.size`
+* `curl --request GET --url http://localhost:8080/actuator/metrics/cache.evictions`
+* `curl --request GET --url http://localhost:8080/actuator/metrics/cache.puts` why is this always 0? Does Caffeine not track puts? I guess puts could be inferred from misses?
+* `curl --request GET --url http://localhost:8080/actuator/metrics/cache.gets`
+* `curl --request GET --url 'http://localhost:8080/actuator/metrics/cache.gets?tag=cache%3Afortune&tag=result%3Ahit'` drill down on cache hits
+* `curl --request GET --url 'http://localhost:8080/actuator/metrics/cache.gets?tag=cache%3Afortune&tag=result%3Amiss'` drill down on cache misses 
