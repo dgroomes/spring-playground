@@ -30,7 +30,7 @@ Spring Boot documentation that should tell me how to get up and running with bas
 
 * <https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-caching>
 * <https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html#production-ready-metrics-cache>
-
+* Bonus. Spring *Framework* documentation about caching: <https://docs.spring.io/spring/docs/5.2.8.RELEASE/spring-framework-reference/integration.html#cache>
 There is a note that I think hints at what my problem:
 
 > Only caches that are configured on startup are bound to the registry.

@@ -67,6 +67,7 @@ project(":caching") {
     dependencies {
         "implementation"("org.springframework.boot:spring-boot-starter")
         "implementation"("org.springframework.boot:spring-boot-starter-cache")
+        "implementation"("com.github.ben-manes.caffeine:caffeine")
         /**
          * Include the 'web' and 'actuator' starters as a vehicle to inspect the cache metrics. The focal point of the
          * 'caching' sub-project is caching *not* web stuff.
