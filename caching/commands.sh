@@ -2,7 +2,7 @@
 
 export CACHING_ROOT_DIR=$(pwd)
 
-# Build (without the tests)
+# Build
 build() {
   "$CACHING_ROOT_DIR"/scripts/build.sh
 }

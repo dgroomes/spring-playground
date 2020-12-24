@@ -19,7 +19,7 @@ This project aims to de-mystify and illuminate it. Let's learn something!
 Source the `commands.sh` file using `source commands.sh` which will load your shell with useful commands. Commands
 include:
 
-  * `build` build (without tests)
+  * `build` build
   * `run` run the app
 
 ### Commentary

@@ -37,5 +37,6 @@ public class Main implements CommandLineRunner {
             log.info(fortune);
             Thread.sleep(1000);
         }
+        System.exit(0);
     }
 }
