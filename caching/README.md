@@ -1,6 +1,6 @@
 # caching
 
-A basic Spring application that showcases caching.
+A basic Spring Boot application that showcases caching.
 
 ---
 
