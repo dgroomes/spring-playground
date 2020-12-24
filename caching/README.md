@@ -10,7 +10,7 @@ This project aims to de-mystify and illuminate it. Let's learn something!
 
 ### Instructions
 
-* Use Java 14
+* Use Java 11
 * Source the `commands.sh` file. See [`commands.sh`](#commandssh)
 * Build and run the program with `build && run`
 

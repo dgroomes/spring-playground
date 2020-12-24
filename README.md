@@ -1,6 +1,6 @@
 # spring-playground
 
-Learning and experimenting with Spring <https://github.com/spring-projects/spring-framework>.
+📚 Learning and experimenting with Spring <https://github.com/spring-projects/spring-framework>.
 
 ---
 
@@ -15,7 +15,12 @@ The sub-projects include:
 
 ### `caching/`
 
-A basic implementation of caching in Spring. In particular, it illustrates the [Spring Boot production ready caching metrics](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html#production-ready-metrics-cache) 
-that are automatically enabled for the caches.
+A basic Spring application that showcases caching.
 
 See [caching/README.md](caching/README.md).
+
+### `scheduling/`
+
+A basic Spring application that showcases scheduling using the [`@Scheduled`](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/scheduling/annotation/Scheduled.html) annotation.
+
+See [scheduling/README.md](scheduling/README.md).

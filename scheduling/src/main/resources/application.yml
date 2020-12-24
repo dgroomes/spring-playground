@@ -1,0 +1,4 @@
+logging:
+  level:
+    org.springframework.scheduling: trace
+    dgroomes.springplayground.scheduling: info

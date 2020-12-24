@@ -42,17 +42,8 @@ val slf4jVersion = "1.7.30" // releases: http://www.slf4j.org/news.html
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter")
-    implementation("org.springframework.boot:spring-boot-starter-cache")
-    implementation("com.github.ben-manes.caffeine:caffeine")
-
-    /**
-     * Include the 'web' and 'actuator' starters as a vehicle to inspect the cache metrics. The focal point of the
-     * 'caching' sub-project is caching *not* web stuff.
-     */
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.springframework.boot:spring-boot-starter-actuator")
 }
 
 application {
-    mainClass.set("dgroomes.springplayground.caching.Main")
+    mainClass.set("dgroomes.springplayground.scheduling.Main")
 }
