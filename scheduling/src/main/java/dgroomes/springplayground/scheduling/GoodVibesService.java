@@ -23,5 +23,12 @@ public class GoodVibesService {
     public void spreadGoodVibes() {
         log.trace("spreadGoodVibes stacktrace:\n{}", Util.formatStackTrace(Thread.currentThread().getStackTrace()));
         log.info("Spreading good vibes!");
+        try {
+            // Simulate slowness in the execution of this method by sleeping. What is the effect of slow execution on a
+            // scheduled method?
+            Thread.sleep(6_000);
+        } catch (InterruptedException e) {
+            log.error("Something went wrong during the sleep", e);
+        }
     }
 }
