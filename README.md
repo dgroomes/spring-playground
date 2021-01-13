@@ -17,10 +17,18 @@ The sub-projects include:
 
 A basic Spring Boot application that showcases caching.
 
-See [caching/README.md](caching/README.md).
+See the README in [caching/](caching/).
 
 ### `scheduling/`
 
 A basic Spring Boot application that showcases scheduling using the [`@Scheduled`](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/scheduling/annotation/Scheduled.html) annotation.
 
-See [scheduling/README.md](scheduling/README.md).
+See the README in [scheduling/](scheduling/).
+
+### `config/`
+
+NOT YET IMPLEMENTED
+
+Showcasing various configuration features of Spring Boot and the Spring Framework.
+
+See the README in [config/](config/).
