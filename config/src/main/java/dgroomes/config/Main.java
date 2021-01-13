@@ -2,6 +2,7 @@ package dgroomes.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,7 +18,7 @@ public class Main {
     }
 
     @Bean
-    public ApplicationRunner runner() {
-        return args -> log.info("Hello!");
+    public ApplicationRunner runner(@Value("${app.message}") String message) {
+        return args -> log.info(message);
     }
 }
