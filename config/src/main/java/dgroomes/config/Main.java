@@ -21,8 +21,14 @@ public class Main {
     }
 
     @Bean
-    public ApplicationRunner runner(@Value("${app.message}") String message) {
-        return args -> log.info(message);
+    public ApplicationRunner runner(
+            @Value("${app.message}") String message,
+            FortuneService fortuneService) {
+
+        return args -> {
+            log.info(message);
+            log.info(fortuneService.getFortune());
+        };
     }
 
     @Bean("fortunesConfiguration")
