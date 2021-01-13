@@ -1,2 +1,3 @@
 app:
   message: Hello, world! The 'dev' Spring profile is active!
+  fortune-configuration: day-fortunes.txt

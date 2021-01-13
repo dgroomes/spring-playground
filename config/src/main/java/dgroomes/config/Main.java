@@ -32,7 +32,7 @@ public class Main {
     }
 
     @Bean("fortunesConfiguration")
-    public File fortunesConfiguration() {
-        return new File("fortunes.txt");
+    public File fortunesConfiguration(@Value("${app.fortune-configuration}") String path) {
+        return new File(path);
     }
 }

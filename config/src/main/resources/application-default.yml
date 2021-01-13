@@ -1,2 +1,3 @@
 app:
   message: Hello, world! The 'default' Spring profile is active!
+  fortune-configuration: number-fortunes.txt
