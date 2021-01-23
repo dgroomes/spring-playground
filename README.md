@@ -33,8 +33,6 @@ See the README in [config/](config/).
 
 ### `bootless/`
 
-NOT YET IMPLEMENTED
-
 A basic Spring Framework application *without Spring Boot*.
 
 See the README in [bootless/](bootless/).
