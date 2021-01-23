@@ -27,7 +27,10 @@ public class Main {
 
         return args -> {
             log.info(message);
-            log.info(fortuneService.getFortune());
+
+            for (int i = 0; i < 5; i++) {
+                log.info(fortuneService.getFortune());
+            }
         };
     }
 

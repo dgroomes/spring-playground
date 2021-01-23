@@ -1,0 +1,3 @@
+app:
+  message: Hello, world! The 'day' Spring profile is active!
+  fortune-configuration: day-fortunes.txt
