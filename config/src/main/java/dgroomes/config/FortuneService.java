@@ -2,8 +2,6 @@ package dgroomes.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,10 +9,12 @@ import java.nio.file.Files;
 import java.util.Random;
 
 /**
- * A toy example that requires a file for configuration. This class is a vehicle to show Spring's configuration
- * features with regard to files.
+ * Get a random "fortune message".
+ *
+ * This class extracts messages from some "fortunes configuration" file. This is a toy example to help show Spring's
+ * configuration features with regard to files and Spring Profiles. See the @Bean-annotated methods in
+ * dgroomes.config.Main to glean more information.
  */
-@Service
 public class FortuneService {
 
     private static final Logger log = LoggerFactory.getLogger(FortuneService.class);
@@ -22,7 +22,11 @@ public class FortuneService {
     private final Random random = new Random();
     private final String[] fortunes;
 
-    public FortuneService(@Qualifier("fortunesConfiguration") File config) throws IOException {
+    /**
+     * @param config the fortunes configuration from which to extract messages
+     * @throws IOException if the configuration file can't be read
+     */
+    public FortuneService(File config) throws IOException {
         log.info("Configuration file: {}", config);
         String configContent = Files.readString(config.toPath());
         log.info("Configuration content:\n{}", configContent);
