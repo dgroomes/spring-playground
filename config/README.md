@@ -1,6 +1,6 @@
 # config
 
-Showcasing various configuration features of Spring Boot and the Spring Framework.
+Showcasing configuration features of Spring Boot and the Spring Framework like Spring Profiles.
 
 ## Instructions
 

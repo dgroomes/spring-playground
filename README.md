@@ -27,8 +27,6 @@ See the README in [scheduling/](scheduling/).
 
 ### `config/`
 
-NOT YET IMPLEMENTED
-
-Showcasing various configuration features of Spring Boot and the Spring Framework.
+Showcasing configuration features of Spring Boot and the Spring Framework like Spring Profiles.
 
 See the README in [config/](config/).
