@@ -6,4 +6,5 @@ tasks.register("assembleAll") {
     dependsOn(gradle.includedBuild("caching").task(":assemble"))
     dependsOn(gradle.includedBuild("scheduling").task(":assemble"))
     dependsOn(gradle.includedBuild("config").task(":assemble"))
+    dependsOn(gradle.includedBuild("bootless").task(":assemble"))
 }

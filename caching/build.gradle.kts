@@ -38,8 +38,6 @@ the<DependencyManagementExtension>().apply {
     }
 }
 
-val slf4jVersion = "1.7.30" // releases: http://www.slf4j.org/news.html
-
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-cache")
