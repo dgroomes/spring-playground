@@ -1,7 +1,5 @@
 # config
 
-NOT YET IMPLEMENTED
-
 Showcasing various configuration features of Spring Boot and the Spring Framework.
 
 ## Instructions
@@ -12,7 +10,8 @@ Showcasing various configuration features of Spring Boot and the Spring Framewor
 * Alternatively, enable a Spring Boot profile named "day" and run the program:
   * `SPRING_PROFILES_ACTIVE=day ./gradlew run`
   * Notice how the fortune messages have changed.
-
+* Try the "dynamic" profile too:
+  * `SPRING_PROFILES_ACTIVE=dynamic ./gradlew run`
 
 ## Referenced materials
 

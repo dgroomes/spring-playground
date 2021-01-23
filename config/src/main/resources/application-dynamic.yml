@@ -1,0 +1,3 @@
+app:
+  message: Hello, world! The 'dynamic' Spring profile is active!
+  fortune-configuration: dynamic-fortunes.txt

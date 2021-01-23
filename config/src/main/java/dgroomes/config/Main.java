@@ -19,7 +19,9 @@ public class Main {
 
     public static void main(String[] args) {
         log.info("Current directory: {}", System.getProperty("user.dir"));
-        SpringApplication.run(Main.class, args);
+        var app = new SpringApplication(Main.class);
+        app.addListeners(new DynamicFortunesGenerator());
+        app.run(args);
     }
 
     @Bean
