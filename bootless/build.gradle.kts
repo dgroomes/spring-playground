@@ -7,8 +7,8 @@ repositories {
     mavenCentral()
 }
 
-val slf4jVersion = "1.7.30" // releases: http://www.slf4j.org/news.html
-val springFrameworkVersion = "5.3.3" // releases: https://spring.io/projects/spring-framework#learn
+val slf4jVersion = "1.7.32" // releases: http://www.slf4j.org/news.html
+val springFrameworkVersion = "5.3.10" // releases: https://spring.io/projects/spring-framework#learn
 
 dependencies {
     implementation("org.slf4j:slf4j-api:$slf4jVersion")
