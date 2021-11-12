@@ -10,7 +10,7 @@ caching ([relevant section in docs](https://docs.spring.io/spring-boot/docs/curr
 
 ### Instructions
 
-* Use Java 11
+* Use Java 17
 * Source the `commands.sh` file
     * See [`commands.sh`](#commandssh)
 * Build and run the program:

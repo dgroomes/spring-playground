@@ -8,7 +8,7 @@ annotation.
 
 ## Instructions
 
-* Use Java 11
+* Use Java 17
 * Run the app:
     * `./gradlew run`
 

@@ -10,7 +10,7 @@ Why make a Spring application without Spring Boot? For educational purposes of c
 
 ## Instructions
 
-* Use Java 11
+* Use Java 17
 * Run the app:
     * `./gradlew run`
 

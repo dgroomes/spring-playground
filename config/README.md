@@ -4,7 +4,7 @@ Showcasing configuration features of Spring Boot and the Spring Framework like S
 
 ## Instructions
 
-* Use Java 11
+* Use Java 17
 * Run the program:
     * `./gradlew run`
 * Alternatively, enable a Spring Boot profile named "day" and run the program:
