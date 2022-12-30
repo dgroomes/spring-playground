@@ -19,17 +19,17 @@ public class Main implements CommandLineRunner {
         SpringApplication.run(Main.class);
     }
 
-    private FortuneService fortuneService;
+    private final FortuneService fortuneService;
 
     public Main(FortuneService fortuneService) {
         this.fortuneService = fortuneService;
     }
 
-    private static List<String> names = List.of("Damon", "Eliza");
+    private static final List<String> names = List.of("Damon", "Eliza");
 
     @Override
     public void run(String... args) throws InterruptedException {
-        log.info("Hello!");
+        log.info("Hell! Let's reveal some fortunes...");
         var size = names.size();
         for (int i = 0; i < 10; i++) {
             var i2 = i % size;

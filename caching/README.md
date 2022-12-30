@@ -24,6 +24,41 @@ Follow these instructions to build and run the example program.
     * ```shell
       build && run
       ```
+* Study the output
+    * The program is configured to log caching-related operations which illuminate the effect of caching. For example,
+      the program attempts to reveal Damon's fortune for the first time and this results in a *cache miss* which you can
+      tell from the following log.
+    * ```text
+      No cache entry for key 'Damon' in cache(s) [fortune]
+      ```
+    * A fortune is created for Damon. For example, you will see a log like the following (the number is randomized so it
+      will be different for you).
+    * ```text
+      Damon, your lucky number is 7
+      ```
+    * Later, Damon's fortune is revealed again and this results in a *cache hit* which you can tell from the following
+      log.
+    * ```text
+      Cache entry for key 'Damon' found in cache 'fortune'
+      ```
+    * And his same fortune (lucky number 7) is revealed again.
+    * But on the next attempt, we can infer that the cache entry must have expired because we find another cache miss.
+    * ```text
+      No cache entry for key 'Damon' in cache(s) [fortune]
+      ```
+    * Damon's fortune is created anew. And this time it's different.
+    * ```text
+      Damon, your lucky number is 3
+      ``` 
+
+In sum, this program provided a working example of the lifecycle of a basic caching scheme:
+
+1. Cache miss
+2. Create/lookup operation
+3. Cache set
+4. Cache hit.
+5. Time elapses... There are cache hits until the cache entry expires. 
+6. Cache expire. REPEAT from step 1.  
 
 
 ## `commands.sh`
@@ -65,7 +100,7 @@ package (AOP stands for Aspect-Oriented Programming), and layers of method calls
 the `org.springframework.cache.interceptor`
 package. It looks like this:
 
-![stack trace](screenshots/stack-trace.png)
+<img alt="stack trace" src="screenshots/stack-trace.png" width="1000"/>
 
 This demo application enables caching metrics (after two days of head scratching I got it figured out). The metrics can
 be conveniently browsed in the Spring Boot Actuator '/metrics' endpoint. Run the app and explore the cache metrics with,
@@ -92,3 +127,11 @@ for example:
   curl --request GET --url 'http://localhost:8080/actuator/metrics/cache.gets?tag=cache%3Afortune&tag=result%3Amiss'
   ```
   * Drill down on cache misses. 
+
+
+## Wish List
+
+General clean-ups, TODOs and things I wish to implement for this project:
+
+* [ ] Can I configure a shorter log date/time format? For demo purposes, I really don't need the year/month/day or
+  even fractional seconds.
