@@ -2,21 +2,31 @@
 
 A basic Spring Boot application that showcases caching.
 
----
+
+## Overview
 
 Spring Boot (<https://spring.io/projects/spring-boot>) has a significant amount of software machinery around
-caching ([relevant section in docs](https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-caching))
-. This project aims to de-mystify and illuminate it. Let's learn something!
+caching ([relevant section in docs](https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-caching)).
+This project aims to de-mystify and illuminate it. Let's learn something!
 
-### Instructions
+
+## Instructions
+
+Follow these instructions to build and run the example program.
 
 * Use Java 17
 * Source the `commands.sh` file
-    * See [`commands.sh`](#commandssh)
+    * ```shell
+      . commands.sh
+      ```
+    * See [`commands.sh`](#commandssh) for more information.
 * Build and run the program:
-    * `build && run`
+    * ```shell
+      build && run
+      ```
 
-### `commands.sh`
+
+## `commands.sh`
 
 Source the `commands.sh` file using `source commands.sh` which will load your shell with useful commands. Commands
 include:
@@ -24,7 +34,8 @@ include:
 * `build` build
 * `run` run the app
 
-### Commentary
+
+## Commentary
 
 Here is a gentle reminder: Spring Framework provides abstractions over other technologies. For example, read this quote
 from <https://docs.spring.io/spring/docs/5.2.8.RELEASE/spring-framework-reference/integration.html#cache-strategies>:
@@ -60,12 +71,24 @@ This demo application enables caching metrics (after two days of head scratching
 be conveniently browsed in the Spring Boot Actuator '/metrics' endpoint. Run the app and explore the cache metrics with,
 for example:
 
-* `curl --request GET --url http://localhost:8080/actuator/metrics/cache.size`
-* `curl --request GET --url http://localhost:8080/actuator/metrics/cache.evictions`
-* `curl --request GET --url http://localhost:8080/actuator/metrics/cache.puts` why is this always 0? Does Caffeine not
-  track puts? I guess puts could be inferred from misses?
-* `curl --request GET --url http://localhost:8080/actuator/metrics/cache.gets`
-* `curl --request GET --url 'http://localhost:8080/actuator/metrics/cache.gets?tag=cache%3Afortune&tag=result%3Ahit'`
-  drill down on cache hits
-* `curl --request GET --url 'http://localhost:8080/actuator/metrics/cache.gets?tag=cache%3Afortune&tag=result%3Amiss'`
-  drill down on cache misses 
+* ```shell
+  curl --request GET --url http://localhost:8080/actuator/metrics/cache.size
+  ```
+* ```shell
+  curl --request GET --url http://localhost:8080/actuator/metrics/cache.evictions
+  ```
+* ```shell
+  curl --request GET --url http://localhost:8080/actuator/metrics/cache.puts
+  ```
+  * Why is this always 0? Does Caffeine not track puts? I guess puts could be inferred from misses?
+* ```shell
+  curl --request GET --url http://localhost:8080/actuator/metrics/cache.gets
+  ```
+* ```shell
+  curl --request GET --url 'http://localhost:8080/actuator/metrics/cache.gets?tag=cache%3Afortune&tag=result%3Ahit'
+  ```
+  * Drill down on cache hits.
+* ```shell
+  curl --request GET --url 'http://localhost:8080/actuator/metrics/cache.gets?tag=cache%3Afortune&tag=result%3Amiss'
+  ```
+  * Drill down on cache misses. 
