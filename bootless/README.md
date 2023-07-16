@@ -12,10 +12,19 @@ Why make a Spring application without Spring Boot? For educational purposes of c
 
 Follow these instructions to build and run the example program.
 
-* Use Java 17
-* Run the app:
+1. Use Java 17
+2. Run the app:
     * ```shell
       ./gradlew run
+      ```
+    * Observe the logs. Spring logs some startup information and our own code logs custom messages. Here are snippets of
+      the output.
+    * ```text
+      12:43:18 [main] INFO dgroomes.springplayground.bootless.Main - Wiring up a simple Spring application context
+      ...
+      12:43:18 [main] DEBUG org.springframework.context.annotation.AnnotationConfigApplicationContext - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@3108bc
+      ...
+      12:43:22 [scheduledExecutorFactoryBean-1] INFO dgroomes.springplayground.bootless.Beans - Hello, I am a 'Runnable' that was instantiated and executed on a schedule via Spring Framework
       ```
 
 
