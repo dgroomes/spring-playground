@@ -8,11 +8,20 @@ annotation.
 
 Follow these instructions to build and run the example program.
 
-* Use Java 17
-* Run the app:
+1. Use Java 17
+2. Run the app:
     * ```shell
       ./gradlew run
       ```
+    * Notice how the custom "Spreading good vibes!" message is printed every 10 seconds.
+    * ```text
+      2023-07-16T13:18:55.528-05:00  INFO 55607 --- [           main] d.springplayground.scheduling.Main       : Started Main in 0.337 seconds (process running for 0.474)
+      2023-07-16T13:19:00.005-05:00  INFO 55607 --- [   scheduling-1] d.s.scheduling.GoodVibesService          : Spreading good vibes!
+      2023-07-16T13:19:10.004-05:00  INFO 55607 --- [   scheduling-1] d.s.scheduling.GoodVibesService          : Spreading good vibes!
+      2023-07-16T13:19:20.001-05:00  INFO 55607 --- [   scheduling-1] d.s.scheduling.GoodVibesService          : Spreading good vibes!
+      ```
+3. Stop the app.
+    * Use the `Ctrl+C` key combination to stop the Gradle `run` task.
 
 
 ## Reference
