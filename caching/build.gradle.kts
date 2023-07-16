@@ -2,7 +2,7 @@ import io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension
 
 plugins {
     java
-    id("org.springframework.boot") version "3.0.1" apply false // releases: https://spring.io/projects/spring-boot#learn
+    id("org.springframework.boot") version "3.1.1" apply false // releases: https://spring.io/projects/spring-boot#learn
     application
 }
 
@@ -44,7 +44,7 @@ dependencies {
 
     /**
      * Include the 'web' and 'actuator' starters as a vehicle to inspect the cache metrics. The focal point of the
-     * 'caching' sub-project is caching *not* web stuff.
+     * 'caching' subproject is caching *not* web stuff.
      */
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-actuator")

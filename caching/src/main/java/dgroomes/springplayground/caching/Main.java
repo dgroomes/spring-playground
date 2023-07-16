@@ -29,7 +29,7 @@ public class Main implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws InterruptedException {
-        log.info("Hell! Let's reveal some fortunes...");
+        log.info("Hello! Let's reveal some fortunes...");
         var size = names.size();
         for (int i = 0; i < 10; i++) {
             var i2 = i % size;

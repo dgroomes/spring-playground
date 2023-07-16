@@ -14,25 +14,25 @@ This project aims to de-mystify and illuminate it. Let's learn something!
 
 Follow these instructions to build and run the example program.
 
-* Use Java 17
-* Source the `commands.sh` file
+1. Use Java 17
+2. Source the `commands.sh` file
     * ```shell
       . commands.sh
       ```
     * See [`commands.sh`](#commandssh) for more information.
-* Build and run the program:
+3. Build and run the program:
     * ```shell
       build && run
       ```
-* Study the output
+4. Study the output
     * The program is configured to log caching-related operations which illuminate the effect of caching. For example,
       the program attempts to reveal Damon's fortune for the first time and this results in a *cache miss* which you can
       tell from the following log.
     * ```text
       No cache entry for key 'Damon' in cache(s) [fortune]
       ```
-    * A fortune is created for Damon. For example, you will see a log like the following (the number is randomized so it
-      will be different for you).
+    * A fortune is created for Damon. For example, you will see a log like the following (the number is randomized, so 
+      it will be different for you).
     * ```text
       Damon, your lucky number is 7
       ```
@@ -77,7 +77,7 @@ from <https://docs.spring.io/spring/docs/5.2.8.RELEASE/spring-framework-referenc
 
 > As with other services in the Spring Framework, the caching service is an abstraction (not a cache implementation) and requires the use of actual storage to store the cache data–that is, the abstraction frees you from having to write the caching logic but does not provide the actual data store.
 
-This `caching/` sub-project of the `spring-playground/` project demonstrates Spring's caching abstraction in action.
+This `caching/` subproject of the `spring-playground/` project demonstrates Spring's caching abstraction in action.
 Specifically it shows how to use the abstraction in the application code with the convenient `@Cacheable` annotation and
 how the abstraction layer does not extend to the *configuration* of the underlying caching technology (in this case
 <https://github.com/ben-manes/caffeine>). This might be considered a *leaky abstraction*.
