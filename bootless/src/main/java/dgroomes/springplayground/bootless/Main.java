@@ -10,6 +10,7 @@ import org.springframework.scheduling.concurrent.ConcurrentTaskScheduler;
 import org.springframework.scheduling.concurrent.ScheduledExecutorFactoryBean;
 import org.springframework.util.Assert;
 
+import java.time.Duration;
 import java.util.concurrent.ScheduledExecutorService;
 
 /**
@@ -17,7 +18,7 @@ import java.util.concurrent.ScheduledExecutorService;
  */
 public class Main {
 
-    private static final Logger log = org.slf4j.LoggerFactory.getLogger(Main.class);
+    private static final Logger log = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) throws InterruptedException {
         log.info("Wiring up a simple Spring application context");
@@ -25,7 +26,7 @@ public class Main {
 
         var sayHello = context.getBean("sayHello", Runnable.class);
         var taskScheduler = context.getBean(TaskScheduler.class);
-        taskScheduler.scheduleWithFixedDelay(sayHello, 1_000);
+        taskScheduler.scheduleWithFixedDelay(sayHello, Duration.ofSeconds(1));
 
         Thread.sleep(5_000);
 
@@ -34,7 +35,7 @@ public class Main {
         context.stop();
         /*
          * I don't really understand the Bean lifecycle to be honest. There is a way to define the beans and wire them up
-         * in the application context so that they should be automatically shutdown when the application context is stopped
+         * in the application context so that they should be automatically shutdown when the application context is stopped,
          * but I can't figure it out yet. So the best I can do is shut it down myself.
          */
         var scheduledExecutorService = context.getBean( "scheduledExecutorService", ScheduledExecutorService.class);
