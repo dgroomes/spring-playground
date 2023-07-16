@@ -1,4 +1,4 @@
-name: Assemble all sub-projects
+name: Assemble all subprojects
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  assemble-all-sub-projects:
+  assemble-all-subprojects:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,5 +20,5 @@ jobs:
       - name: Check out the code
         uses: actions/checkout@v2
 
-      - name: Assemble all sub-projects
+      - name: Assemble all subprojects
         run: ./gradlew assembleAll
