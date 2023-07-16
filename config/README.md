@@ -7,17 +7,17 @@ Showcasing configuration features of Spring Boot and the Spring Framework like S
 
 Follow these instructions to build and run the example program.
 
-* Use Java 17
-* Run the program:
+1. Use Java 17
+2. Run the program:
     * ```shell
       ./gradlew run
       ```
-* Alternatively, enable a Spring Boot profile named "day" and run the program:
+3. Alternatively, enable a Spring Boot profile named "day" and run the program:
     * ```shell
       SPRING_PROFILES_ACTIVE=day ./gradlew run
       ```
     * Notice how the fortune messages have changed.
-* Try the "dynamic" profile too:
+4. Try the "dynamic" profile too:
     * ```shell
       SPRING_PROFILES_ACTIVE=dynamic ./gradlew run
       ```
