@@ -31,6 +31,12 @@ Showcasing configuration features of Spring Boot and the Spring Framework like S
 
 See the README in [config/](config/).
 
+### `web-mvc/`
+
+A "hello world" Spring Boot Web MVC demo.
+
+See the README in [web-mvc/](web-mvc/).
+
 ### `bootless/`
 
 A basic Spring Framework application *without Spring Boot*.
