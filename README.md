@@ -42,3 +42,9 @@ See the README in [web-mvc/](web-mvc/).
 A basic Spring Framework application *without Spring Boot*.
 
 See the README in [bootless/](bootless/).
+
+### `bootless-web-mvc/`
+
+A Spring Web MVC application *without Spring Boot*.
+
+See the README in [bootless-web-mvc/](bootless-web-mvc/).
