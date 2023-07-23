@@ -3,7 +3,7 @@
 A basic Spring Framework application *without Spring Boot*.
 
 
-### Overview
+## Overview
 
 Why make a Spring application without Spring Boot? For educational purposes of course.
 
@@ -33,9 +33,10 @@ Follow these instructions to build and run the example program.
 General clean-ups, TODOs and things I wish to implement for this project:
 
 * [ ] Learn the Bean lifecycle better and specifically learn how to shutdown the schedule executor in an idiomatic way
-* [ ] Can I configure and start a Spring web server (i.e. SpringMVC) without Spring Boot? I remember looking and could not
+* [x] DONE (Done in the subproject `bootless-web-mvc`) Can I configure and start a Spring web server (i.e. SpringMVC) without Spring Boot? I remember looking and could not
   find a way to do this. I know that it would be rare to ever do this, but I assume it has to be possible and even
   officially supported because after all, Spring Framework still has legs without Spring Boot.
+* [ ] What if I didn't use component scanning (is that the right word? I want spring to not scan the classpath).
 
 
 ## Referenced material
