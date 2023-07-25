@@ -48,3 +48,11 @@ See the README in [bootless/](bootless/).
 A Spring Web MVC application *without Spring Boot*.
 
 See the README in [bootless-web-mvc/](bootless-web-mvc/).
+
+
+## Wish List
+
+General clean-ups, TODOs and things I wish to implement for this project:
+
+* [ ] Explore Spring's support for ahead-of-time (AOT) codegen. Spring's AOT support was created to support GraalVM
+  native-image, but I'm interested in exploring it for its own sake. Consider creating a `bootless-aot` subproject.

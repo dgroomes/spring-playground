@@ -11,6 +11,7 @@ import org.springframework.scheduling.concurrent.ScheduledExecutorFactoryBean;
 import org.springframework.util.Assert;
 
 import java.time.Duration;
+import java.time.Instant;
 import java.util.concurrent.ScheduledExecutorService;
 
 /**
@@ -22,11 +23,13 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
         log.info("Wiring up a simple Spring application context");
+        Instant start = Instant.now();
         var context = new AnnotationConfigApplicationContext(Main.class.getPackageName());
-
         var sayHello = context.getBean("sayHello", Runnable.class);
         var taskScheduler = context.getBean(TaskScheduler.class);
         taskScheduler.scheduleWithFixedDelay(sayHello, Duration.ofSeconds(1));
+        Instant end = Instant.now();
+        log.debug("Wired up the application context in {}", Duration.between(start, end));
 
         Thread.sleep(5_000);
 
