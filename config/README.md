@@ -7,7 +7,8 @@ Showcasing configuration features of Spring Boot and the Spring Framework like S
 
 Follow these instructions to build and run the example program.
 
-1. Use Java 17
+1. Pre-requisite: Java
+   * I used Java 21
 2. Run the program:
     * ```shell
       ./gradlew run

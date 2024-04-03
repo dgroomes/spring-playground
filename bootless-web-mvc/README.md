@@ -13,7 +13,8 @@ embedded Tomcat)? How convoluted is it? How practical is it? I want to know.
 
 Follow these instructions to build and run the example program.
 
-1. Use Java 17
+1. Pre-requisite: Java
+    * I used Java 21
 2. Start the Spring program and Tomcat server
     * ```shell
       ./gradlew run

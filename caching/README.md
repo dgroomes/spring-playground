@@ -14,7 +14,8 @@ This project aims to de-mystify and illuminate it. Let's learn something!
 
 Follow these instructions to build and run the example program.
 
-1. Use Java 17
+1. Pre-requisite: Java
+    * I used Java 21
 2. Source the `commands.sh` file
     * ```shell
       . commands.sh
