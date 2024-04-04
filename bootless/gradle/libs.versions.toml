@@ -1,8 +1,8 @@
 [versions]
 # SLF4J releases: http://www.slf4j.org/news.html
-slf4j = "2.0.7"
+slf4j = "2.0.12"
 # Spring Framework releases: https://spring.io/projects/spring-framework#learn
-spring-framework = "6.0.11"
+spring-framework = "6.0.18"
 
 [libraries]
 
