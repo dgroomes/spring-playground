@@ -15,9 +15,13 @@ Follow these instructions to build and run the example program.
 
 1. Pre-requisite: Java
     * I used Java 21
-2. Start the Spring program and Tomcat server
+2. Build the program distribution
     * ```shell
-      ./gradlew run
+      ./gradlew installDist
+      ```
+3. Start the Spring program and Tomcat server
+    * ```shell
+      ./build/install/bootless-web-mvc/bin/bootless-web-mvc
       ```
     * The program will log something that looks like the following.
     * ```text
@@ -25,10 +29,10 @@ Follow these instructions to build and run the example program.
       15:17:49.201 [main] DEBUG dgroomes.springplayground.bootlesswebmvc.Main - Tomcat server started and Spring application context initialized in PT0.471009S
       15:17:49.202 [main] INFO dgroomes.springplayground.bootlesswebmvc.Main - Open http://localhost:8080/message in your browser to see the message. Press Ctrl-C to stop the program and server.
       ```
-3. Open the browser
+4. Open the browser
     * Let's see the final effect by opening the browser to <http://[::1]:8080/message>. You should see a special
       message from the server.
-4. Stop the server
+5. Stop the server
     * When you're ready, stop the demo program and server with the `Ctrl+C` key combination.
 
 
