@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.concurrent.ConcurrentTaskScheduler;
 import org.springframework.scheduling.concurrent.ScheduledExecutorFactoryBean;
-import org.springframework.util.Assert;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -34,15 +33,7 @@ public class Main {
         Thread.sleep(5_000);
 
         log.info("Shutting down");
-
-        context.stop();
-        /*
-         * I don't really understand the Bean lifecycle to be honest. There is a way to define the beans and wire them up
-         * in the application context so that they should be automatically shutdown when the application context is stopped,
-         * but I can't figure it out yet. So the best I can do is shut it down myself.
-         */
-        var scheduledExecutorService = context.getBean( "scheduledExecutorService", ScheduledExecutorService.class);
-        scheduledExecutorService.shutdown();
+        context.close();
     }
 }
 
@@ -54,13 +45,6 @@ class Beans {
     @Bean
     public Runnable sayHello() {
         return () -> log.info("Hello, I am a 'Runnable' that was instantiated and executed on a schedule via Spring Framework");
-    }
-
-    @Bean
-    public ScheduledExecutorService scheduledExecutorService(ScheduledExecutorFactoryBean scheduledExecutorFactoryBean) {
-        ScheduledExecutorService service = scheduledExecutorFactoryBean.getObject();
-        Assert.notNull(service, "The ScheduledExecutorService was null!");
-        return service;
     }
 
     @Bean
