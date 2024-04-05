@@ -31,7 +31,7 @@ dependencies {
        plugin has to make a whole JAR for any change to the project whereas the 'application' plugin does not have to
        pay that cost.
     */
-    implementation(platform("org.springframework.boot:spring-boot-dependencies:3.2.4"))
+    implementation(platform("org.springframework.boot:spring-boot-dependencies:$springBootVersion"))
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-cache")
     implementation("com.github.ben-manes.caffeine:caffeine")
