@@ -16,14 +16,13 @@ Follow these instructions to build and run the example program.
 
 1. Pre-requisite: Java
     * I used Java 21
-2. Source the `commands.sh` file
+2. Build the program distribution:
     * ```shell
-      . commands.sh
+      ./gradlew installDist
       ```
-    * See [`commands.sh`](#commandssh) for more information.
-3. Build and run the program:
+3. Run the program:
     * ```shell
-      build && run
+      ./build/install/caching/bin/caching
       ```
 4. Study the output
     * The program is configured to log caching-related operations which illuminate the effect of caching. For example,
@@ -60,15 +59,6 @@ In sum, this program provided a working example of the lifecycle of a basic cach
 4. Cache hit.
 5. Time elapses... There are cache hits until the cache entry expires. 
 6. Cache expire. REPEAT from step 1.  
-
-
-## `commands.sh`
-
-Source the `commands.sh` file using `source commands.sh` which will load your shell with useful commands. Commands
-include:
-
-* `build` build
-* `run` run the app
 
 
 ## Commentary
