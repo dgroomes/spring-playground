@@ -36,5 +36,5 @@ dependencies {
 }
 
 application {
-    mainClass.set("dgroomes.springplayground.scheduling.Main")
+    mainClass.set("dgroomes.spring_playground.scheduling.Main")
 }

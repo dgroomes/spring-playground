@@ -10,18 +10,22 @@ Follow these instructions to build and run the example program.
 
 1. Pre-requisite: Java
    * I used Java 21
-2. Run the app:
+2. Build the program distribution
     * ```shell
-      ./gradlew run
+      ./gradlew installDist
+      ```
+3. Run the app:
+    * ```shell
+      ./build/install/scheduling/bin/scheduling
       ```
     * Notice how the custom "Spreading good vibes!" message is printed every 10 seconds.
     * ```text
-      2023-07-16T13:18:55.528-05:00  INFO 55607 --- [           main] d.springplayground.scheduling.Main       : Started Main in 0.337 seconds (process running for 0.474)
-      2023-07-16T13:19:00.005-05:00  INFO 55607 --- [   scheduling-1] d.s.scheduling.GoodVibesService          : Spreading good vibes!
-      2023-07-16T13:19:10.004-05:00  INFO 55607 --- [   scheduling-1] d.s.scheduling.GoodVibesService          : Spreading good vibes!
-      2023-07-16T13:19:20.001-05:00  INFO 55607 --- [   scheduling-1] d.s.scheduling.GoodVibesService          : Spreading good vibes!
+      2024-04-05T00:10:35.057-05:00  INFO 26552 --- [           main] d.springplayground.scheduling.Main       : Started Main in 0.375 seconds (process running for 0.53)
+      2024-04-05T00:10:40.007-05:00  INFO 26552 --- [   scheduling-1] d.s.scheduling.GoodVibesService          : Spreading good vibes!
+      2024-04-05T00:10:50.005-05:00  INFO 26552 --- [   scheduling-1] d.s.scheduling.GoodVibesService          : Spreading good vibes!
+      2024-04-05T00:11:00.002-05:00  INFO 26552 --- [   scheduling-1] d.s.scheduling.GoodVibesService          : Spreading good vibes!
       ```
-3. Stop the app.
+4. Stop the app.
     * Use the `Ctrl+C` key combination to stop the Gradle `run` task.
 
 

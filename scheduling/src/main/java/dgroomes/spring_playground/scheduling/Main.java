@@ -1,4 +1,4 @@
-package dgroomes.springplayground.scheduling;
+package dgroomes.spring_playground.scheduling;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

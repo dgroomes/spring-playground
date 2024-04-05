@@ -1,4 +1,4 @@
-package dgroomes.springplayground.scheduling;
+package dgroomes.spring_playground.scheduling;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
