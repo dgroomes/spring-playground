@@ -14,18 +14,22 @@ Follow these instructions to build and run the example program.
 
 1. Pre-requisite: Java
     * I used Java 21
-2. Run the app:
+2. Build the program distribution:
     * ```shell
-      ./gradlew run
+      ./gradlew installDist
+      ```
+3. Run the program:
+    * ```shell
+      ./build/install/bootless/bin/bootless
       ```
     * Observe the logs. Spring logs some startup information and our own code logs custom messages. Here are snippets of
       the output.
     * ```text
-      12:43:18 [main] INFO dgroomes.springplayground.bootless.Main - Wiring up a simple Spring application context
+      00:01:40.118 [main] INFO dgroomes.springplayground.bootless.Main - Wiring up a simple Spring application context
       ...
-      12:43:18 [main] DEBUG org.springframework.context.annotation.AnnotationConfigApplicationContext - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@3108bc
+      00:01:40.190 [main] DEBUG org.springframework.context.annotation.AnnotationConfigApplicationContext - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@4b1c1ea0
       ...
-      12:43:22 [scheduledExecutorFactoryBean-1] INFO dgroomes.springplayground.bootless.Beans - Hello, I am a 'Runnable' that was instantiated and executed on a schedule via Spring Framework
+      00:01:40.281 [scheduledExecutorFactoryBean-1] INFO dgroomes.springplayground.bootless.Beans - Hello, I am a 'Runnable' that was instantiated and executed on a schedule via Spring Framework
       ```
 
 
