@@ -45,5 +45,5 @@ dependencies {
 }
 
 application {
-    mainClass.set("dgroomes.springplayground.caching.Main")
+    mainClass.set("dgroomes.spring_playground.caching.Main")
 }

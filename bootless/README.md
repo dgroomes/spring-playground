@@ -46,13 +46,13 @@ General clean-ups, TODOs and things I wish to implement for this project:
   * In particular, I feel like the following logs show the slowness (of course for this miniscule program the duration
     is not a problem)
   * ```text
-    19:20:43.425 [main] DEBUG dgroomes.springplayground.bootless.Main - Instantiating the application context...
+    19:20:43.425 [main] DEBUG dgroomes.spring_playground.bootless.Main - Instantiating the application context...
     19:20:43.506 [main] DEBUG org.springframework.context.annotation.ClassPathBeanDefinitionScanner - Identified candidate component class: file
     ```
   * That's about half the time of the whole initialization. Is that the fixed cost of using an application context? It's
     fine if it is. Just curious. UPDATE: ok it's a bit faster (81ms vs 50ms (and remember we're in rounding error territory)). I think the remaining fixed cost is just class loading.
   * ```text
-    19:28:25.686 [main] DEBUG dgroomes.springplayground.bootless.Main - Instantiating the application context...
+    19:28:25.686 [main] DEBUG dgroomes.spring_playground.bootless.Main - Instantiating the application context...
     19:28:25.736 [main] DEBUG org.springframework.context.support.GenericApplicationContext - Refreshing org.springframework.context.support.GenericApplicationContext@370736d9
     ```
 

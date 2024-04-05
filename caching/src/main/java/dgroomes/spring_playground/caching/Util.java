@@ -1,4 +1,4 @@
-package dgroomes.springplayground.caching;
+package dgroomes.spring_playground.caching;
 
 import java.util.Arrays;
 
