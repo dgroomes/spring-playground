@@ -1,4 +1,4 @@
-package dgroomes.config;
+package dgroomes.spring_playground.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

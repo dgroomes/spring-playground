@@ -36,5 +36,5 @@ dependencies {
 }
 
 application {
-    mainClass.set("dgroomes.config.Main")
+    mainClass.set("dgroomes.spring_playground.config.Main")
 }

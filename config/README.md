@@ -9,18 +9,22 @@ Follow these instructions to build and run the example program.
 
 1. Pre-requisite: Java
    * I used Java 21
-2. Run the program:
+2. Build the program distribution:
+   * ```shell
+     ./gradlew installDist
+     ```
+3. Run the program:
     * ```shell
-      ./gradlew run
+      ./build/install/config/bin/config
       ```
-3. Alternatively, enable a Spring Boot profile named "day" and run the program:
+4. Alternatively, enable a Spring Boot profile named "day" and run the program:
     * ```shell
-      SPRING_PROFILES_ACTIVE=day ./gradlew run
+      SPRING_PROFILES_ACTIVE=day ./build/install/config/bin/config
       ```
     * Notice how the fortune messages have changed.
-4. Try the "dynamic" profile too:
+5. Try the "dynamic" profile too:
     * ```shell
-      SPRING_PROFILES_ACTIVE=dynamic ./gradlew run
+      SPRING_PROFILES_ACTIVE=dynamic ./build/install/config/bin/config
       ```
 
 
