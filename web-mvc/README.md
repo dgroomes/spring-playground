@@ -31,16 +31,16 @@ Follow these instructions to build and run the example program.
       =========|_|==============|___/=/_/_/_/
       :: Spring Boot ::                (v3.2.4)
       
-      2024-04-05T00:32:29.210-05:00  INFO 36982 --- [           main] dgroomes.spring_playground.webmvc.Main   : Starting Main using Java 21.0.2 with PID 36982 (/Users/dave/repos/personal/spring-playground/web-mvc/build/install/web-mvc/lib/web-mvc.jar started by dave in /Users/dave/repos/personal/spring-playground/web-mvc)
-      2024-04-05T00:32:29.212-05:00  INFO 36982 --- [           main] dgroomes.spring_playground.webmvc.Main   : No active profile set, falling back to 1 default profile: "default"
+      2024-04-05T00:32:29.210-05:00  INFO 36982 --- [           main] dgroomes.spring_playground.web_mvc.Main   : Starting Main using Java 21.0.2 with PID 36982 (/Users/dave/repos/personal/spring-playground/web-mvc/build/install/web-mvc/lib/web-mvc.jar started by dave in /Users/dave/repos/personal/spring-playground/web-mvc)
+      2024-04-05T00:32:29.212-05:00  INFO 36982 --- [           main] dgroomes.spring_playground.web_mvc.Main   : No active profile set, falling back to 1 default profile: "default"
       2024-04-05T00:32:29.536-05:00  INFO 36982 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
       2024-04-05T00:32:29.541-05:00  INFO 36982 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
       2024-04-05T00:32:29.541-05:00  INFO 36982 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
       2024-04-05T00:32:29.560-05:00  INFO 36982 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
       2024-04-05T00:32:29.561-05:00  INFO 36982 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 332 ms
       2024-04-05T00:32:29.696-05:00  INFO 36982 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
-      2024-04-05T00:32:29.700-05:00  INFO 36982 --- [           main] dgroomes.spring_playground.webmvc.Main   : Started Main in 0.627 seconds (process running for 0.786)
-      2024-04-05T00:32:29.701-05:00  INFO 36982 --- [           main] dgroomes.spring_playground.webmvc.Main   : Open http://[::1]:8080 in your browser to see a message. Press Ctrl-C to stop the program and server.
+      2024-04-05T00:32:29.700-05:00  INFO 36982 --- [           main] dgroomes.spring_playground.web_mvc.Main   : Started Main in 0.627 seconds (process running for 0.786)
+      2024-04-05T00:32:29.701-05:00  INFO 36982 --- [           main] dgroomes.spring_playground.web_mvc.Main   : Open http://[::1]:8080 in your browser to see a message. Press Ctrl-C to stop the program and server.
       ```
 4. Make an HTTP request
    * Let's see the final effect by opening the browser to <http://[::1]:8080/>. You should see a special

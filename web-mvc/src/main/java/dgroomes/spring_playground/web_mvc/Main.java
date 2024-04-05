@@ -1,4 +1,4 @@
-package dgroomes.spring_playground.webmvc;
+package dgroomes.spring_playground.web_mvc;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
