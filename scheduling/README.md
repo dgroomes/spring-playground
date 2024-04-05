@@ -20,10 +20,10 @@ Follow these instructions to build and run the example program.
       ```
     * Notice how the custom "Spreading good vibes!" message is printed every 10 seconds.
     * ```text
-      2024-04-05T00:10:35.057-05:00  INFO 26552 --- [           main] d.springplayground.scheduling.Main       : Started Main in 0.375 seconds (process running for 0.53)
-      2024-04-05T00:10:40.007-05:00  INFO 26552 --- [   scheduling-1] d.s.scheduling.GoodVibesService          : Spreading good vibes!
-      2024-04-05T00:10:50.005-05:00  INFO 26552 --- [   scheduling-1] d.s.scheduling.GoodVibesService          : Spreading good vibes!
-      2024-04-05T00:11:00.002-05:00  INFO 26552 --- [   scheduling-1] d.s.scheduling.GoodVibesService          : Spreading good vibes!
+      2024-04-05T00:31:24.570-05:00  INFO 36375 --- [           main] d.spring_playground.scheduling.Main      : Started Main in 0.368 seconds (process running for 0.529)
+      2024-04-05T00:31:25.013-05:00  INFO 36375 --- [   scheduling-1] d.s.scheduling.GoodVibesService          : Spreading good vibes!
+      2024-04-05T00:31:35.004-05:00  INFO 36375 --- [   scheduling-1] d.s.scheduling.GoodVibesService          : Spreading good vibes!
+      2024-04-05T00:31:45.002-05:00  INFO 36375 --- [   scheduling-1] d.s.scheduling.GoodVibesService          : Spreading good vibes!
       ```
 4. Stop the app.
     * Use the `Ctrl+C` key combination to stop the Gradle `run` task.
