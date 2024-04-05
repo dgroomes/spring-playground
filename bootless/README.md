@@ -25,11 +25,11 @@ Follow these instructions to build and run the example program.
     * Observe the logs. Spring logs some startup information and our own code logs custom messages. Here are snippets of
       the output.
     * ```text
-      00:01:40.118 [main] INFO dgroomes.springplayground.bootless.Main - Wiring up a simple Spring application context
+      00:34:51.385 [main] INFO dgroomes.spring_playground.bootless.Main - Wiring up a simple Spring application context
       ...
-      00:01:40.190 [main] DEBUG org.springframework.context.annotation.AnnotationConfigApplicationContext - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@4b1c1ea0
+      00:34:51.462 [main] DEBUG org.springframework.context.annotation.AnnotationConfigApplicationContext - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@4b1c1ea0
       ...
-      00:01:40.281 [scheduledExecutorFactoryBean-1] INFO dgroomes.springplayground.bootless.Beans - Hello, I am a 'Runnable' that was instantiated and executed on a schedule via Spring Framework
+      00:34:51.558 [scheduledExecutorFactoryBean-1] INFO dgroomes.spring_playground.bootless.Beans - Hello, I am a 'Runnable' that was instantiated and executed on a schedule via Spring Framework
       ```
 
 
