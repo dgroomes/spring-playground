@@ -1,18 +1,18 @@
 [versions]
 # SLF4J releases: http://www.slf4j.org/news.html
-slf4j = "2.0.7"
+slf4j = "2.0.12"
 
 # Spring Framework releases: https://spring.io/projects/spring-framework#learn
-spring-framework = "6.0.11"
+spring-framework = "6.1.5"
 
 # Tomcat releases: https://tomcat.apache.org/whichversion.html
-tomcat = "10.1.11"
+tomcat = "10.1.20"
 
 [libraries]
 
 slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
 slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "slf4j" }
 slf4j-jul = { module = "org.slf4j:jul-to-slf4j", version.ref = "slf4j" }
-springframework-spring-context = { module = "org.springframework:spring-context", version.ref = "spring-framework" }
-springframework-spring-webmvc = { module = "org.springframework:spring-webmvc", version.ref = "spring-framework" }
+spring-context = { module = "org.springframework:spring-context", version.ref = "spring-framework" }
+spring-webmvc = { module = "org.springframework:spring-webmvc", version.ref = "spring-framework" }
 tomcat-embedded = { module = "org.apache.tomcat.embed:tomcat-embed-core", version.ref = "tomcat" }

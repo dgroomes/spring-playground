@@ -11,8 +11,8 @@ dependencies {
     implementation(libs.slf4j.api)
     runtimeOnly(libs.slf4j.simple)
     implementation(libs.slf4j.jul)
-    implementation(libs.springframework.spring.context)
-    implementation(libs.springframework.spring.webmvc)
+    implementation(libs.spring.context)
+    implementation(libs.spring.webmvc)
     implementation(libs.tomcat.embedded)
 }
 
