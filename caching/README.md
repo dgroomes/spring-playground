@@ -136,3 +136,4 @@ General clean-ups, TODOs and things I wish to implement for this project:
 
 * [ ] Can I configure a shorter log date/time format? For demo purposes, I really don't need the year/month/day or
   even fractional seconds.
+* [x] DONE (don't even bother with any Spring plugin, just import the BOM) Can I just apply the dependency management plugin without the Spring Boot plugin?
