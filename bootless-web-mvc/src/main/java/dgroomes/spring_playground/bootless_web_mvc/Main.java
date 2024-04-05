@@ -1,4 +1,4 @@
-package dgroomes.springplayground.bootlesswebmvc;
+package dgroomes.spring_playground.bootless_web_mvc;
 
 import jakarta.servlet.ServletContext;
 import org.apache.catalina.Context;

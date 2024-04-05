@@ -17,5 +17,5 @@ dependencies {
 }
 
 application {
-    mainClass.set("dgroomes.springplayground.bootlesswebmvc.Main")
+    mainClass.set("dgroomes.spring_playground.bootless_web_mvc.Main")
 }
