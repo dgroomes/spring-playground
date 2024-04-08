@@ -1,11 +1,9 @@
 [versions]
-# SLF4J releases: http://www.slf4j.org/news.html
-slf4j = "2.0.12"
-# Spring Framework releases: https://spring.io/projects/spring-framework#learn
-spring-framework = "6.1.5"
+slf4j = "2.0.12" # SLF4J releases: http://www.slf4j.org/news.html
+spring-framework = "6.1.5" # Spring Framework releases: https://spring.io/projects/spring-framework#learn
 
 [libraries]
-
 slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
 slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "slf4j" }
-springframework-spring-context = { module = "org.springframework:spring-context", version.ref = "spring-framework" }
+spring-bom = { module = "org.springframework:spring-framework-bom", version.ref = "spring-framework" }
+spring-context = { module = "org.springframework:spring-context" }

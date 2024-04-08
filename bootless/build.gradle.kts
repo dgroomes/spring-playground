@@ -8,9 +8,11 @@ repositories {
 }
 
 dependencies {
+    implementation(platform(libs.spring.bom))
+
     implementation(libs.slf4j.api)
     implementation(libs.slf4j.simple)
-    implementation(libs.springframework.spring.context)
+    implementation(libs.spring.context)
 }
 
 application {

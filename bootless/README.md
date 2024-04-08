@@ -57,7 +57,7 @@ General clean-ups, TODOs and things I wish to implement for this project:
     ```
 
 
-## Referenced material
+## Reference
 
 * [Official docs: "Spring Framework Documentation"](https://docs.spring.io/spring-framework/docs/current/reference/html/)
 * [Official docs: "Task Execution and Scheduling"](https://docs.spring.io/spring-framework/docs/current/reference/html/integration.html#scheduling)
