@@ -35,18 +35,15 @@ Follow these instructions to build and run the example program.
     * ```shell
       ./gradlew installDist
       ```
-3. Start the Spring program and Undertow server
+3. Start the Spring program and Tomcat server
     * ```shell
       ./build/install/bootless-annotationless-functional-endpoints/bin/bootless-annotationless-functional-endpoints
       ```
     * The program will log something that looks like the following.
     * ```text
-      ./build/install/bootless-annotationless-functional-endpoints/bin/bootless-annotationless-functional-endpoints
-      22:55:22.885 [main] INFO dgroomes.spring_playground.bootless_annotationless_functional_endpoints.Main - Starting an Undertow server and wiring up a simple Spring web application context...
-      22:55:22.969 [main] INFO io.undertow - starting server: Undertow - 2.3.12.Final
-      ... omitted ...
-      22:55:23.309 [main] DEBUG dgroomes.spring_playground.bootless_annotationless_functional_endpoints.Main - Undertow server started and Spring application context initialized in PT0.423123S
-      22:55:23.309 [main] INFO dgroomes.spring_playground.bootless_annotationless_functional_endpoints.Main - Open http://[::1]:8080/messages in your browser to see the message. Press Ctrl-C to stop the program and server.
+      23:18:35.829 [main] INFO dgroomes.spring_playground.bootless_annotationless_functional_endpoints.Main - Starting an embedded Tomcat server and wiring up a simple Spring web application context...
+      23:18:36.310 [main] DEBUG dgroomes.spring_playground.bootless_annotationless_functional_endpoints.Main - Tomcat server started and Spring application context initialized in PT0.480576S
+      23:18:36.311 [main] INFO dgroomes.spring_playground.bootless_annotationless_functional_endpoints.Main - Open http://[::1]:8080/messages in your browser to see the message. Press Ctrl-C to stop the program and server.
       ```
 4. Open the browser
     * Let's see the final effect by opening the browser to <http://[::1]:8080/messages>. You should see a special
@@ -83,8 +80,8 @@ General clean-ups, TODOs and things I wish to implement for this project:
    * I'm not sure the annotation-ness is really feasible. But I still want to try it. 
    * By going annotation-less, I actually might want to go full non-framework and just invoke methods and constructors
      directly as needed instead of going through the application context. This style is what I called "bare bones" in
-     my [spring-playground](https://github.com/dgroomes/kafka-playground/tree/7fff26096100823f2368b8b0bcb2cf90b35b90a6/spring-barebones) repository.
-* [ ] Replace Undertow with Tomcat or Jetty. Undertow is somewhat of an evolutionary dead-end because of the lack of
+     my [kafka-playground](https://github.com/dgroomes/kafka-playground/tree/7fff26096100823f2368b8b0bcb2cf90b35b90a6/spring-barebones) repository.
+* [x] DONE Replace Undertow with Tomcat or Jetty. Undertow is somewhat of an evolutionary dead-end because of the lack of
   major updates in the last few years and their stated intention to reimplement on top of Netty. I'm looking for a "small"
   HTTP server for use-cases like these. Tomcat and Jetty are even bigger than I'd like but Spring Web MVC requires a
   servlet-based HTTP server and I'm not willing to use the reactive stack.

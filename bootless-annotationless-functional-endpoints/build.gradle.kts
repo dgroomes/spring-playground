@@ -15,7 +15,7 @@ dependencies {
     runtimeOnly(libs.slf4j.simple)
     implementation(libs.spring.context)
     implementation(libs.spring.webmvc)
-    implementation(libs.undertow.servlet)
+    implementation(libs.tomcat.embedded)
 }
 
 application {

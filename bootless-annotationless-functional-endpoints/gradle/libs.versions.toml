@@ -1,16 +1,7 @@
 [versions]
 slf4j = "2.0.12" # SLF4J releases: http://www.slf4j.org/news.html
 spring-framework = "6.1.5" # Spring Framework releases: https://spring.io/projects/spring-framework#learn
-
-# Unfortunately, Undertow does not publish a changelog nor does it have a dedicated releases page. The Undertow official
-# site mentions up to the "2.1.x" line of Undertow across its "Blog", "Download" and "Documentation" sections, but
-# Undertow 2.1 was first releases in 2020 while Undertow 2.2 and 2.3 have since been released. How are you supposed to
-# know when new major, minor and patch versions are released?
-#
-# By contrast, the Spring Framework codebase diligently finds and updates the third-party dependencies it uses. I suggest
-# you refer to the Spring Framework's dependency management code to align your dependency versions with theirs. See, for
-# example: https://github.com/spring-projects/spring-framework/blob/v6.1.5/framework-platform/framework-platform.gradle
-undertow = "2.3.12.Final"
+tomcat = "10.1.20" # Tomcat releases: https://tomcat.apache.org/whichversion.html
 
 [libraries]
 slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
@@ -19,4 +10,4 @@ slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "slf4j" }
 spring-bom = { module = "org.springframework:spring-framework-bom", version.ref = "spring-framework" }
 spring-context = { module = "org.springframework:spring-context" }
 spring-webmvc = { module = "org.springframework:spring-webmvc" }
-undertow-servlet = { module = "io.undertow:undertow-servlet", version.ref = "undertow" }
+tomcat-embedded = { module = "org.apache.tomcat.embed:tomcat-embed-core", version.ref = "tomcat" }

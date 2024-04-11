@@ -1,13 +1,11 @@
 package dgroomes.spring_playground.bootless_annotationless_functional_endpoints;
 
-import io.undertow.Undertow;
-import io.undertow.servlet.Servlets;
-import io.undertow.servlet.api.DeploymentInfo;
-import io.undertow.servlet.api.DeploymentManager;
-import io.undertow.servlet.api.InstanceHandle;
-import io.undertow.servlet.spec.ServletContextImpl;
-import jakarta.servlet.Servlet;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
+import org.apache.catalina.Context;
+import org.apache.catalina.LifecycleException;
+import org.apache.catalina.connector.Connector;
+import org.apache.catalina.startup.Tomcat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.bridge.SLF4JBridgeHandler;
@@ -15,6 +13,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
+import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -42,8 +41,8 @@ public class Main {
     AnnotationConfigWebApplicationContext appContext;
     int PORT = 8080;
 
-    public static void main(String[] args) throws ServletException {
-        // Undertow logs with JUL (java.util.logging). We want Undertow to log through our preferred logging system which is
+    public static void main(String[] args) throws LifecycleException {
+        // Tomcat logs with JUL (java.util.logging). We want Tomcat to log through our preferred logging system which is
         // SLF4J (including the logging implementation 'slf4j-simple'). We can bridge JUL to SLF4J using the 'jul-to-slf4j'
         // library and the snippet below.
         LogManager.getLogManager().reset();
@@ -52,48 +51,30 @@ public class Main {
         new Main().run();
     }
 
-    public void run() throws ServletException {
-        log.info("Starting an Undertow server and wiring up a simple Spring web application context...");
+    public void run() throws LifecycleException {
+        log.info("Starting an embedded Tomcat server and wiring up a simple Spring web application context...");
 
         var initStart = Instant.now();
 
         appContext = new AnnotationConfigWebApplicationContext();
 
-        // We need to point the Undertow machinery to the Spring machinery and vice versa.
+        // We need to point the Tomcat machinery to the Spring machinery and vice versa.
         {
             var dispatcherServlet = new DispatcherServlet(appContext);
-            DeploymentInfo deploymentInfo = Servlets.deployment()
-                    .setClassLoader(Main.class.getClassLoader())
-                    .setContextPath("/")
-                    .setDeploymentName("bootless-annotationless-functional-endpoints")
-                    .addServlets(
-                            Servlets.servlet("DispatcherServlet", DispatcherServlet.class, () -> new InstanceHandle<>() {
-                                        @Override
-                                        public Servlet getInstance() {
-                                            return dispatcherServlet;
-                                        }
-
-                                        @Override
-                                        public void release() {
-
-                                        }
-                                    })
-                                    .addMapping("/"));
-
-            // Initialize the deployment manager
-            DeploymentManager manager = Servlets.defaultContainer().addDeployment(deploymentInfo);
-            manager.deploy();
-
-            // Start the Undertow server
-            Undertow server = Undertow.builder()
-                    .addHttpListener(PORT, "[::1]")
-                    .setHandler(manager.start())
-                    .build();
-
-            server.start();
-
-            ServletContextImpl servletContext = manager.getDeployment().getServletContext();
+            Tomcat tomcat = new Tomcat();
+            tomcat.setBaseDir("tomcat-work-dir");
+            tomcat.setPort(PORT);
+            Context ctx = tomcat.addContext("", null);
+            var connector = new Connector("HTTP/1.1");
+            connector.setPort(PORT);
+            tomcat.getService().addConnector(connector);
+            Tomcat.addServlet(ctx, "dispatcherServlet", dispatcherServlet);
+            ctx.addServletMappingDecoded("/", "dispatcherServlet");
+            ServletContext servletContext = ctx.getServletContext();
             appContext.setServletContext(servletContext);
+            servletContext.setAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, appContext);
+
+            tomcat.start();
         }
 
         appContext.register(AppConfig.class);
@@ -102,7 +83,7 @@ public class Main {
 
         var initEnd = Instant.now();
         var initDuration = Duration.between(initStart, initEnd);
-        log.debug("Undertow server started and Spring application context initialized in {}", initDuration);
+        log.debug("Tomcat server started and Spring application context initialized in {}", initDuration);
         log.info("Open http://[::1]:8080/messages in your browser to see the message. Press Ctrl-C to stop the program and server.");
     }
 }
