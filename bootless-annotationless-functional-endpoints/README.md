@@ -76,7 +76,7 @@ General clean-ups, TODOs and things I wish to implement for this project:
 * [x] DONE Make it work *with* annotations.
 * [x] DONE Flesh out the various endpoints/methods. Get multiple messages limited by a `limit` query param,
   create a message, get by ID.
-* [ ] Make it work *without* annotations.
+* [x] DONE (it works! I need to clean it up) Make it work *without* annotations.
    * I'm not sure the annotation-ness is really feasible. But I still want to try it. 
    * By going annotation-less, I actually might want to go full non-framework and just invoke methods and constructors
      directly as needed instead of going through the application context. This style is what I called "bare bones" in

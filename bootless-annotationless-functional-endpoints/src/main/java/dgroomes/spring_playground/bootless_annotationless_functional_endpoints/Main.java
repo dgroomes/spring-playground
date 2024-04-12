@@ -1,7 +1,9 @@
 package dgroomes.spring_playground.bootless_annotationless_functional_endpoints;
 
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.connector.Connector;
@@ -9,14 +11,10 @@ import org.apache.catalina.startup.Tomcat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.bridge.SLF4JBridgeHandler;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
-import org.springframework.web.servlet.DispatcherServlet;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.web.servlet.function.HandlerFunction;
 import org.springframework.web.servlet.function.RouterFunction;
 import org.springframework.web.servlet.function.ServerRequest;
 import org.springframework.web.servlet.function.ServerResponse;
@@ -24,9 +22,7 @@ import org.springframework.web.servlet.function.ServerResponse;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.logging.LogManager;
 import java.util.stream.Collectors;
 
@@ -38,7 +34,6 @@ import static org.springframework.web.servlet.function.RouterFunctions.route;
 public class Main {
 
     Logger log = LoggerFactory.getLogger(Main.class);
-    AnnotationConfigWebApplicationContext appContext;
     int PORT = 8080;
 
     public static void main(String[] args) throws LifecycleException {
@@ -56,30 +51,20 @@ public class Main {
 
         var initStart = Instant.now();
 
-        appContext = new AnnotationConfigWebApplicationContext();
+        var appContext = new AppContext();
+        RouterFunction<?> routes = appContext.routes();
+        var functionalServlet = new FunctionalServlet(routes);
 
-        // We need to point the Tomcat machinery to the Spring machinery and vice versa.
-        {
-            var dispatcherServlet = new DispatcherServlet(appContext);
-            Tomcat tomcat = new Tomcat();
-            tomcat.setBaseDir("tomcat-work-dir");
-            tomcat.setPort(PORT);
-            Context ctx = tomcat.addContext("", null);
-            var connector = new Connector("HTTP/1.1");
-            connector.setPort(PORT);
-            tomcat.getService().addConnector(connector);
-            Tomcat.addServlet(ctx, "dispatcherServlet", dispatcherServlet);
-            ctx.addServletMappingDecoded("/", "dispatcherServlet");
-            ServletContext servletContext = ctx.getServletContext();
-            appContext.setServletContext(servletContext);
-            servletContext.setAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, appContext);
-
-            tomcat.start();
-        }
-
-        appContext.register(AppConfig.class);
-        appContext.refresh();
-        appContext.start();
+        var tomcat = new Tomcat();
+        tomcat.setBaseDir("tomcat-work-dir");
+        tomcat.setPort(PORT);
+        Context ctx = tomcat.addContext("", null);
+        var connector = new Connector("HTTP/1.1");
+        connector.setPort(PORT);
+        tomcat.getService().addConnector(connector);
+        Tomcat.addServlet(ctx, "mainServlet", functionalServlet);
+        ctx.addServletMappingDecoded("/", "mainServlet");
+        tomcat.start();
 
         var initEnd = Instant.now();
         var initDuration = Duration.between(initStart, initEnd);
@@ -214,14 +199,13 @@ class MessageSystem {
     }
 }
 
-@Configuration
-@EnableWebMvc
-@ComponentScan
-class AppConfig {
+/**
+ * This needs to be restructured. I'm only at this point because this is inherited from the original design.
+ */
+class AppContext {
 
     MessageSystem messageSystem = new MessageSystem();
 
-    @Bean
     public RouterFunction<?> routes() {
         /*
         Let's express a CRUD (Create, Read, Update, Delete) API for messages.
@@ -261,5 +245,35 @@ class AppConfig {
                 // Delete
                 .DELETE("/messages/{id}", messageSystem::deleteMessage)
                 .build();
+    }
+}
+
+class FunctionalServlet extends HttpServlet {
+    private final RouterFunction<?> routerFunction;
+    private final List<HttpMessageConverter<?>> messageConverters = List.of(new StringHttpMessageConverter());
+
+    public FunctionalServlet(RouterFunction<?> routerFunction) {
+        this.routerFunction = routerFunction;
+    }
+
+    @Override
+    protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        ServerRequest serverRequest = ServerRequest.create(req, messageConverters);
+        HandlerFunction<?> route;
+        Optional<? extends HandlerFunction<?>> routeOpt = routerFunction.route(serverRequest);
+        if (routeOpt.isEmpty()) {
+            // todo return a 404.
+            throw new ServletException("No matching route");
+        }
+
+        route = routeOpt.get();
+        ServerResponse serverResponse;
+        try {
+            serverResponse = route.handle(serverRequest);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        serverResponse.writeTo(req, res, () -> messageConverters);
     }
 }
