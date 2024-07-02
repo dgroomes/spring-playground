@@ -1,7 +1,5 @@
 # bootless-annotationless-functional-endpoints
 
-NOT YET FULLY IMPLEMENTED
-
 A Spring Web MVC application that uses the "functional endpoints" APIs. No annotations. No Spring Boot.
 
 

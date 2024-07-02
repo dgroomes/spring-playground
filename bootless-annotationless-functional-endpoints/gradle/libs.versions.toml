@@ -1,7 +1,7 @@
 [versions]
-slf4j = "2.0.12" # SLF4J releases: http://www.slf4j.org/news.html
-spring-framework = "6.1.5" # Spring Framework releases: https://spring.io/projects/spring-framework#learn
-tomcat = "10.1.20" # Tomcat releases: https://tomcat.apache.org/whichversion.html
+slf4j = "2.0.13" # SLF4J releases: http://www.slf4j.org/news.html
+spring-framework = "6.1.10" # Spring Framework releases: https://spring.io/projects/spring-framework#learn
+tomcat = "10.1.25" # Tomcat releases: https://tomcat.apache.org/whichversion.html
 
 [libraries]
 slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
