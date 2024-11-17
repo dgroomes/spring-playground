@@ -1,0 +1,7 @@
+spring:
+  main:
+    banner-mode: off
+
+app:
+  greeting: Hello from the 'application-default.yml' file in classpath resources
+  farewell: Goodbye from the 'application-default.yml' file in classpath resources

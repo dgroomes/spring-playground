@@ -25,6 +25,7 @@ rootProject.name = "spring-playground"
 includeBuild("caching")
 includeBuild("scheduling")
 includeBuild("config")
+includeBuild("config-location")
 includeBuild("bootless")
 includeBuild("bootless-annotationless-functional-endpoints")
 includeBuild("bootless-web-mvc")

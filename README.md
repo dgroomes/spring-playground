@@ -35,6 +35,13 @@ Showcasing configuration features of Spring Boot and the Spring Framework like S
 See the README in [config/](config/).
 
 
+### `config-location/`
+
+Change the location that Spring Boot uses to find external configuration files.
+
+See the README in [config-location/](config-location/).
+
+
 ### `web-mvc/`
 
 A "hello world" Spring Boot Web MVC demo.
