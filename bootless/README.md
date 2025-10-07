@@ -13,7 +13,7 @@ Why make a Spring application without Spring Boot? For educational purposes of c
 Follow these instructions to build and run the example program.
 
 1. Pre-requisite: Java
-    * I used Java 21
+    * I used Java 25
 2. Build the program distribution:
     * ```shell
       ./gradlew installDist
