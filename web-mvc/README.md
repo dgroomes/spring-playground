@@ -8,17 +8,17 @@ A "hello world" Spring Boot Web MVC demo.
 Follow these instructions to build and run the example program.
 
 1. Pre-requisite: Java
-    * I used Java 21
+    - I used Java 25
 2. Build the program distribution
-    * ```shell
+    - ```shell
       ./gradlew installDist
       ```
 3. Run the program:
-    * ```shell
+    - ```shell
       ./build/install/web-mvc/bin/web-mvc
       ```
-    * It should start up and log something that looks like the following.
-    * ```text
+    - It should start up and log something that looks like the following.
+    - ```text
       $ ./gradlew run
       
       > Task :run
@@ -43,7 +43,7 @@ Follow these instructions to build and run the example program.
       2024-04-05T00:32:29.701-05:00  INFO 36982 --- [           main] dgroomes.spring_playground.web_mvc.Main   : Open http://[::1]:8080 in your browser to see a message. Press Ctrl-C to stop the program and server.
       ```
 4. Make an HTTP request
-   * Let's see the final effect by opening the browser to <http://[::1]:8080/>. You should see a special
+   - Let's see the final effect by opening the browser to <http://[::1]:8080/>. You should see a special
      message from the server.
 
 
@@ -51,7 +51,7 @@ Follow these instructions to build and run the example program.
 
 General clean-ups, TODOs and things I wish to implement for this project:
 
-* [ ] Actually do something with MVC. I built this subproject for a runnable example MVC project so that I could attach a
+- [ ] Actually do something with MVC. I built this subproject for a runnable example MVC project so that I could attach a
   debugger and see how the initialization code works, but this subproject doesn't actually showcase many features of
   MVC. Maybe do something with content negotiation, optional query params, compression, access logs, tracing, the user
   agent or something.

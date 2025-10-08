@@ -30,7 +30,7 @@ See the README in [scheduling/](scheduling/).
 
 ### `config/`
 
-Showcasing configuration features of Spring Boot and the Spring Framework like Spring Profiles.
+Showcasing configuration features of Spring Boot and the Spring Framework like Spring profiles.
 
 See the README in [config/](config/).
 
