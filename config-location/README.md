@@ -23,29 +23,29 @@ See <https://docs.spring.io/spring-boot/how-to/properties-and-configuration.html
 Follow these instructions to build and run the example program.
 
 1. Pre-requisite: Java
-    * I used Java 21
+    - I used Java 25
 2. Build the program distribution:
-    * ```shell
+    - ```shell
       ./gradlew installDist
       ```
 3. Run the program:
-    * ```shell
+    - ```shell
       ./build/install/config-location/bin/config-location
       ```
-    * It should print something like the following (some boilerplate omitted).
-    * ```text
+    - It should print something like the following (some boilerplate omitted).
+    - ```text
       **************************************************
       Hello from the 'application-default.yml' file in classpath resources
       Goodbye from the 'application-default.yml' file in classpath resources
       **************************************************
       ```
 4. Alternatively, tell the application to use an alternative location to find the config data
-    * ```shell
+    - ```shell
       ./build/install/config-location/bin/config-location --spring.config.additional-location=file:alternate-config/
       ```
-    * Notice how the message has changed. We're not getting "Goodbye" from the classpath resources config file but
+    - Notice how the message has changed. We're not getting "Goodbye" from the classpath resources config file but
       instead a "See you later" from the config file in the `alternate-config/` directory.
-    * ```text
+    - ```text
       **************************************************
       Hello from the 'application-default.yml' file in classpath resources
       See you later, from the 'application-default.yml' file in the 'alternate-config/' directory
