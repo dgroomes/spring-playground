@@ -1,12 +1,12 @@
 [versions]
 # SLF4J releases: http://www.slf4j.org/news.html
-slf4j = "2.0.13"
+slf4j = "2.0.17"
 
 # Spring Framework releases: https://spring.io/projects/spring-framework#learn
-spring-framework = "6.1.10"
+spring-framework = "6.2.11"
 
 # Tomcat releases: https://tomcat.apache.org/whichversion.html
-tomcat = "10.1.25"
+tomcat = "11.0.11"
 
 [libraries]
 
