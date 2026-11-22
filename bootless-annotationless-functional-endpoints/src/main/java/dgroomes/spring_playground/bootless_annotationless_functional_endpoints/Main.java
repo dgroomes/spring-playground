@@ -63,7 +63,7 @@ public class Main {
         connector.setPort(PORT);
         tomcat.getService().addConnector(connector);
         Tomcat.addServlet(ctx, "mainServlet", functionalServlet);
-        ctx.addServletMappingDecoded("/", "mainServlet");
+        ctx.addServletMapping("/", "mainServlet");
         tomcat.start();
 
         var initEnd = Instant.now();

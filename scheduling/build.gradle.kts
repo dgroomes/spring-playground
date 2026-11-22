@@ -3,7 +3,7 @@ plugins {
     application
 }
 
-val springBootVersion = "3.5.6" // https://spring.io/projects/spring-boot#learn
+val springBootVersion = "4.2.0" // https://spring.io/projects/spring-boot#learn
 
 repositories {
     mavenCentral()

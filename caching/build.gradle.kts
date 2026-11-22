@@ -3,7 +3,7 @@ plugins {
     application
 }
 
-val springBootVersion = "3.5.6" // https://spring.io/projects/spring-boot#learn
+val springBootVersion = "4.2.0" // https://spring.io/projects/spring-boot#learn
 
 repositories {
     mavenCentral()
@@ -40,7 +40,7 @@ dependencies {
      * Include the 'web' and 'actuator' starters as a vehicle to inspect the cache metrics. The focal point of the
      * 'caching' subproject is caching *not* web stuff.
      */
-    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-webmvc")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
 }
 

@@ -1,6 +1,5 @@
 package dgroomes.spring_playground.bootless_web_mvc;
 
-import jakarta.servlet.ServletContext;
 import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.connector.Connector;
@@ -12,7 +11,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -27,7 +25,6 @@ import java.util.logging.LogManager;
 public class Main {
 
     static final Logger log = LoggerFactory.getLogger(Main.class);
-    AnnotationConfigWebApplicationContext appContext;
     static final int PORT = 8080;
 
     Tomcat tomcat;
@@ -50,27 +47,20 @@ public class Main {
 
         initTomcatBoilerplate();
 
-        appContext = new AnnotationConfigWebApplicationContext();
+        var appContext = new AnnotationConfigWebApplicationContext();
+        appContext.register(AppConfig.class);
 
         // We need to point the Tomcat machinery to the Spring machinery and vice versa. It took me a few hours to
         // figure out all the places that I needed to do this.
-        {
-            var dispatcherServlet = new DispatcherServlet(appContext);
-            Tomcat.addServlet(ctx, "dispatcherServlet", dispatcherServlet);
-            ctx.addServletMappingDecoded("/", "dispatcherServlet");
-            ServletContext servletContext = ctx.getServletContext();
-            appContext.setServletContext(servletContext);
-            servletContext.setAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, appContext);
-        }
+        var dispatcherServlet = new DispatcherServlet(appContext);
+        Tomcat.addServlet(ctx, "dispatcherServlet", dispatcherServlet);
+        ctx.addServletMapping("/", "dispatcherServlet");
 
         tomcat.start();
-        appContext.register(AppConfig.class);
-        appContext.refresh();
-        appContext.start();
 
         var initEnd = Instant.now();
         var initDuration = Duration.between(initStart, initEnd);
-        log.debug("Tomcat server started and Spring application context initialized in {}", initDuration);
+        log.debug("Tomcat server started in {}", initDuration);
         log.info("Open http://localhost:8080/message in your browser to see the message. Press Ctrl-C to stop the program and server.");
     }
 

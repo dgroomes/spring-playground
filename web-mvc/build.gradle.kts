@@ -3,7 +3,7 @@ plugins {
     application
 }
 
-val springBootVersion = "3.5.6" // https://spring.io/projects/spring-boot#learn
+val springBootVersion = "4.2.0" // https://spring.io/projects/spring-boot#learn
 
 repositories {
     mavenCentral()
@@ -33,7 +33,7 @@ dependencies {
     */
     implementation(platform("org.springframework.boot:spring-boot-dependencies:$springBootVersion"))
     implementation("org.springframework.boot:spring-boot-starter")
-    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-webmvc")
 }
 
 application {
