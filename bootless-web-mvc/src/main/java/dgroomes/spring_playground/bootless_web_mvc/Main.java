@@ -1,8 +1,6 @@
 package dgroomes.spring_playground.bootless_web_mvc;
 
-import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
-import org.apache.catalina.connector.Connector;
 import org.apache.catalina.startup.Tomcat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,69 +23,45 @@ import java.util.logging.LogManager;
 public class Main {
 
     static final Logger log = LoggerFactory.getLogger(Main.class);
-    static final int PORT = 8080;
 
-    Tomcat tomcat;
-    Context ctx;
-
-    public static void main(String[] args) throws InterruptedException, LifecycleException {
+    static void main() throws LifecycleException {
         // Tomcat logs with JUL (java.util.logging). We want Tomcat to log through our preferred logging system which is
         // SLF4J (including the logging implementation 'slf4j-simple'). We can bridge JUL to SLF4J using the 'jul-to-slf4j'
         // library and the snippet below.
         LogManager.getLogManager().reset();
         SLF4JBridgeHandler.install();
 
-        new Main().run();
-    }
-
-    public void run() throws InterruptedException, LifecycleException {
         log.info("Starting an embedded Tomcat server and wiring up a simple Spring web application context...");
 
         var initStart = Instant.now();
 
-        initTomcatBoilerplate();
+        var tomcat = new Tomcat();
+
+        // "Context" is a concept in Tomcat. It's some kind of "container". It's a bit abstract to me. I haven't learned
+        // much about it yet. Can we do something with that second parameter "docBase"?
+        var ctx = tomcat.addContext("", null);
+
+        // It's easy to forget that Tomcat requires a "connector". Calling getConnector() creates and registers the
+        // default HTTP connector on port 8080 if one hasn't been configured.
+        var connector = tomcat.getConnector();
+        connector.setProperty("address", "127.0.0.1");
 
         var appContext = new AnnotationConfigWebApplicationContext();
         appContext.register(AppConfig.class);
 
         // We need to point the Tomcat machinery to the Spring machinery and vice versa. It took me a few hours to
         // figure out all the places that I needed to do this.
-        var dispatcherServlet = new DispatcherServlet(appContext);
-        Tomcat.addServlet(ctx, "dispatcherServlet", dispatcherServlet);
+        var wrapper = Tomcat.addServlet(ctx, "dispatcherServlet", new DispatcherServlet(appContext));
+        // Eagerly initialize the Spring context so any initialization errors surface before the first request.
+        wrapper.setLoadOnStartup(1);
         ctx.addServletMapping("/", "dispatcherServlet");
 
         tomcat.start();
 
         var initEnd = Instant.now();
         var initDuration = Duration.between(initStart, initEnd);
-        log.debug("Tomcat server started in {}", initDuration);
-        log.info("Open http://localhost:8080/message in your browser to see the message. Press Ctrl-C to stop the program and server.");
-    }
-
-    /**
-     * Initialize a {@link Tomcat} instance along with the necessary minimal boilerplate. Part of the boilerplate is
-     * the creation of a {@link Context} instance.
-     */
-    void initTomcatBoilerplate() {
-        tomcat = new Tomcat();
-
-        // This is kind of annoying but Tomcat, even in embedded mode, requires a working directory. It does stuff with
-        // unpacking WAR files and JSP compilation. But we don't use that functionality here so the directory structure
-        // is just empty directories. This is called "accidental complexity".
-        tomcat.setBaseDir("tomcat-work-dir");
-
-        // As with any server, we need to define a port to listen on.
-        tomcat.setPort(PORT);
-
-        // "Context" is a concept in Tomcat. It's some kind of "container". It's a bit abstract to me. I haven't learned
-        // much about it yet. Can we do something with that second parameter "docBase"?
-        ctx = tomcat.addContext("", null);
-
-        // It's easy to forget that Tomcat requires a "connector". If you miss this, you might be left perplexed/stuck
-        // when Tomcat isn't responding to any traffic. See https://stackoverflow.com/a/59282431
-        var connector = new Connector("HTTP/1.1");
-        connector.setPort(PORT);
-        tomcat.getService().addConnector(connector);
+        log.debug("Tomcat server started and Spring application context initialized in {}", initDuration);
+        log.info("Open http://127.0.0.1:8080/message in your browser to see the message. Press Ctrl-C to stop the program and server.");
     }
 }
 

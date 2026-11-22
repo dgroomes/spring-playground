@@ -1,0 +1,2 @@
+# Tomcat's default base directory is based on port, e.g. tomcat.8080.
+tomcat.*/

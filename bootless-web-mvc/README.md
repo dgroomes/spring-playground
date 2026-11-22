@@ -27,10 +27,10 @@ Follow these instructions to build and run the example program.
     - ```text
       00:37:15.264 [main] INFO dgroomes.spring_playground.bootless_web_mvc.Main - Starting an embedded Tomcat server and wiring up a simple Spring web application context...
       00:37:15.729 [main] DEBUG dgroomes.spring_playground.bootless_web_mvc.Main - Tomcat server started and Spring application context initialized in PT0.463398S
-      00:37:15.729 [main] INFO dgroomes.spring_playground.bootless_web_mvc.Main - Open http://localhost:8080/message in your browser to see the message. Press Ctrl-C to stop the program and server.
+      00:37:15.729 [main] INFO dgroomes.spring_playground.bootless_web_mvc.Main - Open http://127.0.0.1:8080/message in your browser to see the message. Press Ctrl-C to stop the program and server.
       ```
 4. Open the browser
-    - Let's see the final effect by opening the browser to <http://[::1]:8080/message>. You should see a special
+    - Let's see the final effect by opening the browser to <http://127.0.0.1:8080/message>. You should see a special
       message from the server.
 5. Stop the server
     - When you're ready, stop the demo program and server with the `Ctrl+C` key combination.
