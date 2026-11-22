@@ -41,26 +41,26 @@ Follow these instructions to build and run the example program.
     * ```text
       23:18:35.829 [main] INFO dgroomes.spring_playground.bootless_annotationless_functional_endpoints.Main - Starting an embedded Tomcat server and wiring up a simple Spring web application context...
       23:18:36.310 [main] DEBUG dgroomes.spring_playground.bootless_annotationless_functional_endpoints.Main - Tomcat server started and Spring application context initialized in PT0.480576S
-      23:18:36.311 [main] INFO dgroomes.spring_playground.bootless_annotationless_functional_endpoints.Main - Open http://[::1]:8080/messages in your browser to see the message. Press Ctrl-C to stop the program and server.
+      23:18:36.311 [main] INFO dgroomes.spring_playground.bootless_annotationless_functional_endpoints.Main - Open http://127.0.0.1:8080/messages in your browser to see the message. Press Ctrl-C to stop the program and server.
       ```
 4. Open the browser
-    * Let's see the final effect by opening the browser to <http://[::1]:8080/messages>. You should see a special
+    * Let's see the final effect by opening the browser to <http://127.0.0.1:8080/messages>. You should see a special
       message from the server.
 5. Add your own messages
     * ```shell
-      curl -X POST --header 'Content-Type: text/plain' --data 'Hello there.' http://[::1]:8080/messages
-      curl -X POST --header 'Content-Type: text/plain' --data 'Hello again there.' http://[::1]:8080/messages
-      curl -X POST --header 'Content-Type: text/plain' --data 'Hello one more time.' http://[::1]:8080/messages
+      curl -X POST --header 'Content-Type: text/plain' --data 'Hello there.' http://127.0.0.1:8080/messages
+      curl -X POST --header 'Content-Type: text/plain' --data 'Hello again there.' http://127.0.0.1:8080/messages
+      curl -X POST --header 'Content-Type: text/plain' --data 'Hello one more time.' http://127.0.0.1:8080/messages
       ```
     * Your message was added. Refresh the browser to see it.
 6. Delete the first message
     * ```shell
-      curl -X DELETE http://[::1]:8080/messages/1
+      curl -X DELETE http://127.0.0.1:8080/messages/1
       ```
     * The first message was deleted. Refresh the browser to see the change.
 7. Let's try a query parameter
     * ```shell
-      curl http://[::1]:8080/messages?limit=2
+      curl http://127.0.0.1:8080/messages?limit=2
       ```
     * This will limit the messages to just the first two.
 8. Stop the server

@@ -1,20 +1,14 @@
 package dgroomes.spring_playground.bootless_annotationless_functional_endpoints;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
-import org.apache.catalina.connector.Connector;
 import org.apache.catalina.startup.Tomcat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.bridge.SLF4JBridgeHandler;
 import org.springframework.http.MediaType;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.web.servlet.function.HandlerFunction;
+import org.springframework.web.context.support.GenericWebApplicationContext;
+import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.function.RouterFunction;
 import org.springframework.web.servlet.function.ServerRequest;
 import org.springframework.web.servlet.function.ServerResponse;
@@ -34,9 +28,8 @@ import static org.springframework.web.servlet.function.RouterFunctions.route;
 public class Main {
 
     Logger log = LoggerFactory.getLogger(Main.class);
-    int PORT = 8080;
 
-    public static void main(String[] args) throws LifecycleException {
+    static void main() throws LifecycleException {
         // Tomcat logs with JUL (java.util.logging). We want Tomcat to log through our preferred logging system which is
         // SLF4J (including the logging implementation 'slf4j-simple'). We can bridge JUL to SLF4J using the 'jul-to-slf4j'
         // library and the snippet below.
@@ -51,25 +44,31 @@ public class Main {
 
         var initStart = Instant.now();
 
-        var appContext = new AppContext();
-        RouterFunction<?> routes = appContext.routes();
-        var functionalServlet = new FunctionalServlet(routes);
+        var appContext = new GenericWebApplicationContext();
+        appContext.registerBean(MessageSystem.class);
+        appContext.registerBean(RouterFunction.class, () -> MessageRoutes.routes(appContext.getBean(MessageSystem.class)));
 
         var tomcat = new Tomcat();
-        tomcat.setBaseDir("tomcat-work-dir");
-        tomcat.setPort(PORT);
-        Context ctx = tomcat.addContext("", null);
-        var connector = new Connector("HTTP/1.1");
-        connector.setPort(PORT);
-        tomcat.getService().addConnector(connector);
-        Tomcat.addServlet(ctx, "mainServlet", functionalServlet);
+
+        // "Context" is a concept in Tomcat. It's some kind of "container". It's a bit abstract to me. I haven't learned
+        // much about it yet. Can we do something with that second parameter "docBase"?
+        var ctx = tomcat.addContext("", null);
+
+        // It's easy to forget that Tomcat requires a "connector". Calling getConnector() creates and registers the
+        // default HTTP connector on port 8080 if one hasn't been configured.
+        var connector = tomcat.getConnector();
+        connector.setProperty("address", "127.0.0.1");
+
+        var wrapper = Tomcat.addServlet(ctx, "mainServlet", new DispatcherServlet(appContext));
+        // Eagerly initialize the Spring context so any initialization errors surface before the first request.
+        wrapper.setLoadOnStartup(1);
         ctx.addServletMapping("/", "mainServlet");
         tomcat.start();
 
         var initEnd = Instant.now();
         var initDuration = Duration.between(initStart, initEnd);
         log.debug("Tomcat server started and Spring application context initialized in {}", initDuration);
-        log.info("Open http://[::1]:8080/messages in your browser to see the message. Press Ctrl-C to stop the program and server.");
+        log.info("Open http://127.0.0.1:8080/messages in your browser to see the message. Press Ctrl-C to stop the program and server.");
     }
 }
 
@@ -199,14 +198,12 @@ class MessageSystem {
     }
 }
 
-/**
- * This needs to be restructured. I'm only at this point because this is inherited from the original design.
- */
-class AppContext {
+final class MessageRoutes {
 
-    MessageSystem messageSystem = new MessageSystem();
+    private MessageRoutes() {
+    }
 
-    public RouterFunction<?> routes() {
+    static RouterFunction<?> routes(MessageSystem messageSystem) {
         /*
         Let's express a CRUD (Create, Read, Update, Delete) API for messages.
 
@@ -245,35 +242,5 @@ class AppContext {
                 // Delete
                 .DELETE("/messages/{id}", messageSystem::deleteMessage)
                 .build();
-    }
-}
-
-class FunctionalServlet extends HttpServlet {
-    private final RouterFunction<?> routerFunction;
-    private final List<HttpMessageConverter<?>> messageConverters = List.of(new StringHttpMessageConverter());
-
-    public FunctionalServlet(RouterFunction<?> routerFunction) {
-        this.routerFunction = routerFunction;
-    }
-
-    @Override
-    protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        ServerRequest serverRequest = ServerRequest.create(req, messageConverters);
-        HandlerFunction<?> route;
-        Optional<? extends HandlerFunction<?>> routeOpt = routerFunction.route(serverRequest);
-        if (routeOpt.isEmpty()) {
-            // todo return a 404.
-            throw new ServletException("No matching route");
-        }
-
-        route = routeOpt.get();
-        ServerResponse serverResponse;
-        try {
-            serverResponse = route.handle(serverRequest);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-        serverResponse.writeTo(req, res, () -> messageConverters);
     }
 }
